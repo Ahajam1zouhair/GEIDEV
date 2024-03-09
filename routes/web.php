@@ -18,4 +18,7 @@ Route::get('/', function () {
     return view('Dashboard.Dashboard');
 });
 
-Route::resource('/stagiaire' , StagiaireController::class);
+Route::resource('/stagiaire', StagiaireController::class);
+Route::post('/stagiaire/search', [StagiaireController::class, 'search'])->name('stagiaire_search');
+
+

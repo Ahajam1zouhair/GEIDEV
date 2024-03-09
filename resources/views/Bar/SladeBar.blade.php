@@ -3,8 +3,7 @@
         <div class="app-brand-link">
             {{-- Logo CMC --}}
             <span class="app-brand-logo demo">
-                <img src="https://emploi24.ma/wp-content/uploads/2023/05/Inscription-CMC-Cites-des-Metiers-et-des-Competences-2023-2024.webp"
-                    style="width:150px; height:50px" alt="logo" class="demo">
+                <img src="https://emploi24.ma/wp-content/uploads/2023/05/Inscription-CMC-Cites-des-Metiers-et-des-Competences-2023-2024.webp" style="width:150px; height:50px" alt="logo" class="demo">
             </span>
         </div>
         <span class="app-brand-text demo menu-text fw-bolder ms-2"></span>
@@ -30,9 +29,9 @@
                 <div data-i18n="Account Settings">Account Settings</div>
             </a>
             <ul class="menu-sub">
-                <li class="menu-item{{ Request::is('/') ? ' active' : '' }}">
-                    <a href="{{ url('/') }}" class="menu-link">
-                        <div data-i18n="Dashboard">Les Poles</div>
+                <li class="menu-item{{ Request::is('/stagiaire') ? ' active' : '' }}">
+                    <a href="{{ url('/stagiaire') }}" class="menu-link">
+                        <div data-i18n="Dashboard">Les stagiaire</div>
                     </a>
                 </li>
             </ul>

@@ -12,8 +12,8 @@ class StagiaireController extends Controller
      */
     public function index()
     {
-        $stagiaires =Stagiaire::all();
-        return view('Stagiaire.index' , compact('stagiaires'));
+        $stagiaires = Stagiaire::all();
+        return view('Stagiaire.index', compact('stagiaires'));
     }
 
     /**
@@ -63,4 +63,10 @@ class StagiaireController extends Controller
     {
         //
     }
+    public function search(Request $request)
+    {
+        dd($request);
+    }
+    
+    
 }
