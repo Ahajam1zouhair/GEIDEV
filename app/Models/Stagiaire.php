@@ -22,6 +22,7 @@ class Stagiaire extends Model
         'type_stag',
         'niveau',
         'commentaire',
+        'email',
     ];
 
 }

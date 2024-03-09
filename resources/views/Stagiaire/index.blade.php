@@ -6,6 +6,7 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
+        <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> Add stagiaire</a>
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
@@ -15,7 +16,7 @@
                 </div>
                 <div class="col-md-6 mt-4">
                     <form class="input-group input-group-merge" method="POST">
-                        @csrf 
+                        @csrf
                         <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
                         <input type="text" class="form-control" name="libelle_groupe" id="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
                         <button type="submit" class="btn btn-primary">Search</button>
@@ -28,6 +29,7 @@
                     <thead class="table-light">
                         <tr>
                             <th>MARICULE</th>
+                            <th>type_stag</th>
                             <th>CIN</th>
                             <th>NOM & prénom</th>
                             <th>STATUT</th>
@@ -39,6 +41,7 @@
                         @foreach ($stagiaires as $stagiaire)
                         <tr>
                             <td>{{ $stagiaire->matricule }}</td>
+                            <td>{{ $stagiaire->type_stag }}</td>
                             <td>{{ $stagiaire->cin }}</td>
                             <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $stagiaire->nom }}
                                     {{ $stagiaire->prenom }}</strong>
@@ -68,29 +71,4 @@
         </div>
     </div>
 </div>
-@endsection
-
-
-@section('javescript')
-<script>
-    $(document).ready(function(){
-        $(document).on('input', "#search", function(){
-            var SearchByName = $(this).val();
-            jQuery.ajax({
-                url: "{{ route('stagiaire_search') }}",
-                type: 'post',
-                dataType: 'html',
-                cache: false,
-                data: {SearchByName: SearchByName, '_token': '{{ csrf_token() }}'},
-                success: function(response){
-                    $("#search_result").html(response)
-                },
-                error: function(xhr, status, error){
-                    // Gestion des erreurs si nécessaire
-                    console.error(error);
-                }
-            });
-        });
-    });
-</script>
 @endsection

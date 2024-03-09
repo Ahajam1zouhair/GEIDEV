@@ -15,13 +15,14 @@ return new class extends Migration
             $table->id();
             $table->string("matricule");
             $table->string("civilite");
-            $table->string("cin");
+            $table->string("cin");          
             $table->string("nom");
             $table->string("prenom");
             $table->string("statut");
             $table->string("filere");
             $table->string("groupe");
             $table->string("tel");
+            $table->string("email");
             $table->date("date_naissance");
             $table->string("type_stag");
             $table->string("niveau");

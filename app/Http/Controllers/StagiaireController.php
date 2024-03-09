@@ -21,7 +21,7 @@ class StagiaireController extends Controller
      */
     public function create()
     {
-        //
+        return view('Stagiaire.create');
     }
 
     /**
@@ -29,7 +29,27 @@ class StagiaireController extends Controller
      */
     public function store(Request $request)
     {
-        //
+       
+        $validated = $request->validate([
+            'matricule' => 'required',
+            'civilite' => 'required',
+            'nom' => 'required',
+            'prenom' => 'required',
+            'statut' => 'required',
+            'cin' => 'required|unique:stagiaires',
+            'date_naissance' => 'required',
+            'tel' => 'required',
+            'email' => 'required|email',
+            'filere' => 'required',
+            'groupe' => 'required',
+            'niveau' => 'required',
+            'type_stag' => 'required',
+            'commentaire' => 'required'
+        ]);
+        
+        Stagiaire::create($validated);
+
+        return redirect()->route('stagiaire.index');
     }
 
     /**
@@ -67,6 +87,4 @@ class StagiaireController extends Controller
     {
         dd($request);
     }
-    
-    
 }
