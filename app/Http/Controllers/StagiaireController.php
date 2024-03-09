@@ -63,10 +63,20 @@ class StagiaireController extends Controller
     {
         //
     }
-    public function search(Request $request)
-    {
-        dd($request);
+
+    public function apiIndex(Request $request)
+{
+    $query = Stagiaire::query();
+
+    if ($request->has('search_name')) {
+        $query->where('nom', 'LIKE', '%' . $request->search_name . '%');
     }
-    
-    
+
+    $stagiaires = $query->get();
+
+    return response()->json($stagiaires);
+}
+
+
+
 }
