@@ -15,17 +15,17 @@
                     <h5 class="card-header">Table les Stagiaire</h5>
                 </div>
                 <div class="col-md-6 mt-4">
-                    <form class="input-group input-group-merge" method="POST">
+       <form class="input-group input-group-merge" method="POST">
                         @csrf
+
                         <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
-                        <input type="text" class="form-control" name="libelle_groupe" id="search" placeholder="Search..." aria-label="Search..." aria-describedby="basic-addon-search31" />
-                        <button type="submit" class="btn btn-primary">Search</button>
-                    </form>
+                        <input type="text" class="form-control" id="searchByName" name="search_name" placeholder="SearchByName..." aria-label="Search..." aria-describedby="basic-addon-search31" />
+                        <button type="submit" class="btn btn-primary" id="searchButton">Search</button>
                 </div>
             </div>
 
             <div class="table-responsive text-nowrap" id="search_result">
-                <table class="table">
+                <table class="table" id="stagiairesTable">
                     <thead class="table-light">
                         <tr>
                             <th>MARICULE</th>
@@ -71,4 +71,3 @@
         </div>
     </div>
 </div>
-@endsection

@@ -20,5 +20,3 @@ Route::get('/', function () {
 
 Route::resource('/stagiaire', StagiaireController::class);
 
-
-
