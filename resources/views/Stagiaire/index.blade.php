@@ -6,7 +6,6 @@
 
     <div class="container-xxl flex-grow-1 container-p-y">
         <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
-        <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> Add stagiaire</a>
 
         <!-- Basic Bootstrap Table -->
         <div class="card">
@@ -15,9 +14,6 @@
                     <h5 class="card-header">Table les Stagiaire</h5>
                 </div>
                 <div class="col-md-6 mt-4">
-       <form class="input-group input-group-merge" method="POST">
-                        @csrf
-
                         <span class="input-group-text" id="basic-addon-search31"><i class="bx bx-search"></i></span>
                         <input type="text" class="form-control" id="searchByName" name="search_name" placeholder="SearchByName..." aria-label="Search..." aria-describedby="basic-addon-search31" />
                         <button type="submit" class="btn btn-primary" id="searchButton">Search</button>
@@ -29,7 +25,6 @@
                     <thead class="table-light">
                         <tr>
                             <th>MARICULE</th>
-                            <th>type_stag</th>
                             <th>CIN</th>
                             <th>NOM & prénom</th>
                             <th>STATUT</th>
@@ -41,7 +36,6 @@
                         @foreach ($stagiaires as $stagiaire)
                         <tr>
                             <td>{{ $stagiaire->matricule }}</td>
-                            <td>{{ $stagiaire->type_stag }}</td>
                             <td>{{ $stagiaire->cin }}</td>
                             <td><i class="fab fa-angular fa-lg text-danger me-3"></i> <strong>{{ $stagiaire->nom }}
                                     {{ $stagiaire->prenom }}</strong>
@@ -71,3 +65,45 @@
         </div>
     </div>
 </div>
+@endsection
+
+
+@section('javescript')
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            $('#searchByName').on('keyup', function() {
+                var value = $(this).val().toLowerCase();
+                $.ajax({
+                    url: "/stagiairesdata",
+                    type: "GET",
+                    success: function(data) {
+                        var filteredData = data.filter(function(stag) {
+                            return stag.nom.toLowerCase().includes(value);
+                        });
+                        updateTable(filteredData);
+                    }
+                });
+            });
+
+            // || prof.prenom_prof.toLowerCase().includes(value)
+
+            function updateTable(stagiaires) {
+                var tableBody = $('#stagiairesTable tbody');
+                tableBody.empty();
+                $.each(stagiaires, function(index, stag) {
+                    var row = `<tr>
+                        <td>${stag.matricule}</td>
+                        <td>${stag.cin}</td>
+                        <td>${stag.nom} ${stag.prenom}</td>
+                        <td>${stag.statut}</td>
+                        <td>${stag.filere}</td>
+                        <td>${stag.groupe}</td>
+                    </tr>`;
+                    tableBody.append(row);
+                });
+            }
+        });
+        </script>
+
+@endsection
