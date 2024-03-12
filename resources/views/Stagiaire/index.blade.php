@@ -10,7 +10,7 @@
                     <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> Add stagiaire</a>
                 </div>
                 <div class="col-md-4">
-                    <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> Add stagiaire</a>
+                    <a href="{{ route('stagiaire.create') }}" class="btn btn-success  mb-4"> Add stagiaire</a>
                 </div>
             </div>
             <!-- Basic Bootstrap Table -->
@@ -81,19 +81,22 @@
                         <label class="col-form-label" for="basic-default-cin_stag">stagaiaire </label>
                         <div class="col-sm-10">
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="statut" id="inlineRadio2" value="FORME" />
-                                <label class="col-form-labell bg-label-success" for="inlineCheckbox2">Sensibilisé</label>
+                                <input class="form-check-input" type="radio" name="statut" id="inlineRadio2"
+                                    value="FORME" />
+                                <label class="col-form-labell " for="inlineCheckbox2">Sensibilisé</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="VISITER_INCUBATEUR" />
-                                <label class="form-check-label bg-label-primary" for="inlineCheckbox2">Visité I'incubateur</label>
+                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2"
+                                    value="VISITER_INCUBATEUR" />
+                                <label class="form-check-label " for="inlineCheckbox2">Visité I'incubateur</label>
                             </div>
                             <div class="form-check form-check-inline">
-                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="PROTRUR_PROJET" />
-                                <label class="form-check-label bg-label-info " for="inlineCheckbox2">Porteur de projet</label>
+                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2"
+                                    value="PROTRUR_PROJET" />
+                                <label class="form-check-label " for="inlineCheckbox2">Porteur de projet</label>
                             </div>
                             @error('statut')
-                            <div class="alert alert-danger">{{ $message }}</div>
+                                <div class="alert alert-danger">{{ $message }}</div>
                             @enderror
                         </div>
                     </div>
@@ -157,7 +160,7 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                $('#searchByName').on('keyup', function() {
+                $(' #searchByCin').on('keyup', function() {
                     var value = $(this).val().toLowerCase();
                     $.ajax({
                         url: "/stagiairesdata",
