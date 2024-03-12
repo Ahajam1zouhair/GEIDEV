@@ -95,6 +95,7 @@
 
                                 <div class="col-md-4">
 
+    
                                     <div class="row mb-3">
                                         <label class=" col-form-label" for="basic-default-tel">tel
                                             stagiaire</label>
@@ -179,7 +180,6 @@
                                         @enderror
                                     </div>
                                 </div>
-
                                 <div class="row mb-3">
                                     <label for="exampleFormControlTextarea1" class="form-label"> commentaire</label>
                                     <textarea class="form-control" id="exampleFormControlTextarea1" name="commentaire" rows="3"></textarea>
@@ -188,14 +188,6 @@
                                     @enderror
                                 </div>
                             </div>
-
-
-
-
-
-
-
-
                             <div class="col-sm-10">
                                 <button type="submit" class="btn btn-primary">submit</button>
                             </div>

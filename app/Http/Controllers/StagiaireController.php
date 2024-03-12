@@ -29,7 +29,7 @@ class StagiaireController extends Controller
      */
     public function store(Request $request)
     {
-       
+
         $validated = $request->validate([
             'matricule' => 'required',
             'civilite' => 'required',
@@ -46,7 +46,7 @@ class StagiaireController extends Controller
             'type_stag' => 'required',
             'commentaire' => 'required'
         ]);
-        
+
         Stagiaire::create($validated);
 
         return redirect()->route('stagiaire.index');
@@ -86,13 +86,10 @@ class StagiaireController extends Controller
     public function apiIndex(Request $request)
     {
         $query = Stagiaire::query();
-    
         if ($request->has('search_name')) {
             $query->where('nom', 'LIKE', '%' . $request->search_name . '%');
         }
-    
         $stagiaires = $query->get();
-    
         return response()->json($stagiaires);
     }
 }
