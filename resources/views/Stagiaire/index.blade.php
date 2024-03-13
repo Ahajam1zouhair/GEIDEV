@@ -50,20 +50,22 @@
                     <div class="col-md-4">
                         <label class="col-form-label" for="basic-default-poles">filieres</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
+                            <select class="form-select" id="searchByFiliere" aria-label="Default select example"
                                 name="filere">
-                                <option selected>DEV101</option>
-                                <option selected>DEV102</option>
+                                <option value="">Toutes les filières</option>
+                                <option value="DEV101">DEV101</option>
+                                <option value="DEV102">DEV102</option>
                             </select>
                         </div>
                     </div>
                     <div class="col-md-4">
                         <label class="col-form-label" for="basic-default-poles">GROUPE</label>
                         <div class="col-sm-10">
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
+                            <select class="form-select" id="searchByGroupe" aria-label="Default select example"
                                 name="filere">
-                                <option selected>DEV101</option>
-                                <option selected>DEV102</option>
+                                <option value="">Tous les groupes</option>
+                                <option value="DEV101">DEV101</option>
+                                <option value="DEV102">DEV102</option>
                             </select>
                         </div>
                     </div>
@@ -149,6 +151,13 @@
 
                             </tbody>
                         </table>
+                        <label for="pageSize">Items par page :</label>
+                        <input type="number" id="pageSize" value="5" min="1" step="1">
+
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
@@ -160,37 +169,112 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
         <script>
             $(document).ready(function() {
-                $(' #searchByCin').on('keyup', function() {
-                    var value = $(this).val().toLowerCase();
-                    $.ajax({
-                        url: "/stagiairesdata",
-                        type: "GET",
-                        success: function(data) {
-                            var filteredData = data.filter(function(stag) {
-                                return stag.nom.toLowerCase().includes(value);
-                            });
-                            updateTable(filteredData);
-                        }
-                    });
+                $('#pageSize').on('change', function() {
+                    var newSize = parseInt($(this).val());
+                    if (!isNaN(newSize) && newSize >
+                        0) { // Vérifie que newSize est un nombre et plus grand que 0
+                        pageSize = newSize;
+                        currentPage = 1;
+                        updateTable();
+                    } else {
+                        alert('Veuillez entrer un nombre valide pour les items par page.');
+                    }
                 });
 
-                // || prof.prenom_prof.toLowerCase().includes(value)
+                var pageSize = 10;
+                var currentPage = 1;
+                var stagiaires = [];
 
-                function updateTable(stagiaires) {
+                function updateTable() {
                     var tableBody = $('#stagiairesTable tbody');
                     tableBody.empty();
-                    $.each(stagiaires, function(index, stag) {
+                    var startIndex = (currentPage - 1) * pageSize;
+                    var endIndex = startIndex + pageSize;
+                    var paginatedItems = stagiaires.slice(startIndex, endIndex);
+
+                    $.each(paginatedItems, function(index, stag) {
                         var row = `<tr>
                         <td>${stag.matricule}</td>
                         <td>${stag.cin}</td>
-                        <td>${stag.nom} ${stag.prenom}</td>
-                        <td>${stag.statut}</td>
+                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> ${stag.nom} ${stag.prenom}</td>
+                        <td><span class="badge bg-label-primary me-1">${stag.statut}</span></td>
                         <td>${stag.filere}</td>
                         <td>${stag.groupe}</td>
                     </tr>`;
                         tableBody.append(row);
                     });
+
+                    updatePagination();
                 }
+
+                function updatePagination() {
+                    var pageCount = Math.ceil(stagiaires.length / pageSize);
+                    var paginationUl = $('.pagination');
+                    paginationUl.empty();
+
+                    // Bouton Précédent
+                    var prevLiClass = currentPage === 1 ? 'page-item disabled' : 'page-item';
+                    var prevPageItem =
+                        `<li class="${prevLiClass}"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>`;
+                    $(prevPageItem).on('click', 'a', function(e) {
+                        e.preventDefault();
+                        if (currentPage > 1) {
+                            currentPage--;
+                            updateTable();
+                        }
+                    }).appendTo(paginationUl);
+
+                    // Numéro de la page actuelle
+                    var currentPageItem =
+                        `<li class="page-item active"><a class="page-link" href="#">${currentPage}</a></li>`;
+                    $(currentPageItem).appendTo(paginationUl);
+
+                    // Bouton Suivant
+                    var nextLiClass = currentPage === pageCount ? 'page-item disabled' : 'page-item';
+                    var nextPageItem =
+                        `<li class="${nextLiClass}"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`;
+                    $(nextPageItem).on('click', 'a', function(e) {
+                        e.preventDefault();
+                        if (currentPage < pageCount) {
+                            currentPage++;
+                            updateTable();
+                        }
+                    }).appendTo(paginationUl);
+                }
+
+
+                function search() {
+                    var searchByCin = $('#searchByCin').val().toLowerCase();
+                    var searchByName = $('#searchByName').val().toLowerCase();
+                    var searchByPrenom = $('#searchByPrenom').val().toLowerCase();
+                    var searchByFiliere = $('#searchByFiliere').val();
+                    var searchByGroupe = $('#searchByGroupe').val();
+
+                    $.ajax({
+                        url: "/stagiairesdata",
+                        type: "GET",
+                        success: function(data) {
+                            stagiaires = data.filter(function(stag) {
+                                return stag.cin.toLowerCase().includes(searchByCin) &&
+                                    stag.nom.toLowerCase().includes(searchByName) &&
+                                    stag.prenom.toLowerCase().includes(searchByPrenom) &&
+                                    (searchByFiliere === "" || stag.filere === searchByFiliere) &&
+                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) &&;
+                            });
+                            currentPage = 1; // Réinitialiser à la première page
+                            updateTable();
+                        }
+                    });
+                }
+
+                // Bind the search function to the 'keyup' event for CIN, Nom, and Prenom inputs
+                $('#searchByCin, #searchByName, #searchByPrenom').on('keyup', search);
+
+                // Bind the search function to the 'change' event for Filiere and Groupe selectors
+                $('#searchByFiliere, #searchByGroupe').on('change', search);
+
+                // Initial search to populate table on page load
+                search();
             });
         </script>
     @endsection

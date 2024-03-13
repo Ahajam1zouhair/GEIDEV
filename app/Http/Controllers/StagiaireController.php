@@ -86,14 +86,14 @@ class StagiaireController extends Controller
     public function apiIndex(Request $request)
     {
         $query = Stagiaire::query();
-        
-        // if ($request->has('search_name')) {
-        //     $query->where('nom', 'LIKE', '%' . $request->search_name . '%');
+
+        // if ($request->has('searchByName')) {
+        //     $query->where('nom', 'LIKE', '%' . $request->searchByName . '%');
         // }
 
-        if ($request->has('searchByCin')) {
-            $query->where('cin', 'LIKE', '%' . $request->searchByCin . '%'); // Fix: Change 'search_name' to 'searchByCin'
-        }
+        // if ($request->has('searchByCin')) {
+        //     $query->where('cin', 'LIKE', '%' . $request->searchByCin . '%'); // Fix: Change 'search_name' to 'searchByCin'
+        // }
 
         $stagiaires = $query->get();
         return response()->json($stagiaires);
