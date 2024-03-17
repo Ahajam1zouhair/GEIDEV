@@ -254,7 +254,7 @@
                                     stag.nom.toLowerCase().includes(searchByName) &&
                                     stag.prenom.toLowerCase().includes(searchByPrenom) &&
                                     (searchByFiliere === "" || stag.filere === searchByFiliere) &&
-                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) && ;
+                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) ;
                             });
                             currentPage = 1; // Réinitialiser à la première page
                             updateTable();
