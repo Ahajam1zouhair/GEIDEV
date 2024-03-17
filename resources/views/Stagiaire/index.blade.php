@@ -180,11 +180,9 @@
                         alert('Veuillez entrer un nombre valide pour les items par page.');
                     }
                 });
-
                 var pageSize = 10;
                 var currentPage = 1;
                 var stagiaires = [];
-
                 function updateTable() {
                     var tableBody = $('#stagiairesTable tbody');
                     tableBody.empty();
@@ -241,15 +239,12 @@
                         }
                     }).appendTo(paginationUl);
                 }
-
-
                 function search() {
                     var searchByCin = $('#searchByCin').val().toLowerCase();
                     var searchByName = $('#searchByName').val().toLowerCase();
                     var searchByPrenom = $('#searchByPrenom').val().toLowerCase();
                     var searchByFiliere = $('#searchByFiliere').val();
                     var searchByGroupe = $('#searchByGroupe').val();
-
                     $.ajax({
                         url: "/stagiairesdata",
                         type: "GET",
@@ -259,20 +254,17 @@
                                     stag.nom.toLowerCase().includes(searchByName) &&
                                     stag.prenom.toLowerCase().includes(searchByPrenom) &&
                                     (searchByFiliere === "" || stag.filere === searchByFiliere) &&
-                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) &&;
+                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) && ;
                             });
                             currentPage = 1; // Réinitialiser à la première page
                             updateTable();
                         }
                     });
                 }
-
                 // Bind the search function to the 'keyup' event for CIN, Nom, and Prenom inputs
                 $('#searchByCin, #searchByName, #searchByPrenom').on('keyup', search);
-
                 // Bind the search function to the 'change' event for Filiere and Groupe selectors
                 $('#searchByFiliere, #searchByGroupe').on('change', search);
-
                 // Initial search to populate table on page load
                 search();
             });
