@@ -19,6 +19,6 @@ Route::get('/', function () {
 });
 
 Route::resource('/stagiaire', StagiaireController::class);
-Route::resource('/stagiaire', StagiaireController::class);
-Route::post('/stagiaire/search', [StagiaireController::class, 'search'])->name('stagiaire_search');
+// Route::post('/stagiaire/Beneficiaire', [StagiaireController::class, 'createBeneficiaire'])->name('stagiaire.createBeneficiaire');
 Route::get('/stagiairesdata', [StagiaireController::class, 'apiIndex']);
+Route::get('/beneficiaire/create', [StagiaireController::class, 'createBeneficiaire'])->name('beneficiaire.create');

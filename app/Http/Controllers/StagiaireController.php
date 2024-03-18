@@ -23,6 +23,10 @@ class StagiaireController extends Controller
     {
         return view('Stagiaire.create');
     }
+    public function createBeneficiaire()
+    {
+        return view('stagiaire.createBeneficiaire');
+    }
 
     /**
      * Store a newly created resource in storage.
@@ -30,8 +34,7 @@ class StagiaireController extends Controller
     public function store(Request $request)
     {
 
-        $validated = $request->validate([
-            'matricule' => 'required',
+        $validationRules = [
             'civilite' => 'required',
             'nom' => 'required',
             'prenom' => 'required',
@@ -40,24 +43,32 @@ class StagiaireController extends Controller
             'date_naissance' => 'required',
             'tel' => 'required',
             'email' => 'required|email',
-            'filere' => 'required',
-            'groupe' => 'required',
-            'niveau' => 'required',
             'type_stag' => 'required',
-            'commentaire' => 'required'
-        ]);
+        ];
+
+        // Add conditional validation for 'commentaire' or 'filere', 'groupe', 'niveau'
+        if ($request['type_stag'] === "externe") {
+            $validationRules['commentaire'] = 'required';
+        } else {
+            $validationRules['matricule'] = 'required';
+            $validationRules['filere'] = 'required';
+            $validationRules['groupe'] = 'required';
+            $validationRules['niveau'] = 'required';
+        }
+
+        $validated = $request->validate($validationRules);
 
         Stagiaire::create($validated);
 
         return redirect()->route('stagiaire.index');
     }
 
+
     /**
      * Display the specified resource.
      */
     public function show(Stagiaire $stagiaire)
     {
-        //
     }
 
     /**
@@ -65,16 +76,46 @@ class StagiaireController extends Controller
      */
     public function edit(Stagiaire $stagiaire)
     {
-        //
+        if ($stagiaire->type_stag === "externe") {
+            return view('stagiaire.editBeneficiaire', compact('stagiaire'));
+        } else {
+            return view('Stagiaire.edit', compact('stagiaire'));
+        }
     }
+
 
     /**
      * Update the specified resource in storage.
      */
     public function update(Request $request, Stagiaire $stagiaire)
     {
-        //
+        $validationRules = [
+            'email' => 'required|email',
+            'type_stag' => 'required',
+            'nom' => 'required',
+            'prenom' => 'required',
+            'civilite' => 'required',
+            'statut' => 'required',
+            'cin' => 'required',
+            'date_naissance' => 'required',
+            'tel' => 'required',
+        ];
+    
+        if ($request->input('type_stag') === "externe") {
+            $validationRules['commentaire'] = 'required';
+        } else {
+            $validationRules['matricule'] = 'required';
+            $validationRules['filere'] = 'required';
+            $validationRules['groupe'] = 'required';
+            $validationRules['niveau'] = 'required';
+        }
+    
+        $validated = $request->validate($validationRules);
+        $stagiaire->update($validated);
+    
+        return redirect()->route('stagiaire.index');
     }
+    
 
     /**
      * Remove the specified resource from storage.
@@ -86,14 +127,6 @@ class StagiaireController extends Controller
     public function apiIndex(Request $request)
     {
         $query = Stagiaire::query();
-
-        // if ($request->has('searchByName')) {
-        //     $query->where('nom', 'LIKE', '%' . $request->searchByName . '%');
-        // }
-
-        // if ($request->has('searchByCin')) {
-        //     $query->where('cin', 'LIKE', '%' . $request->searchByCin . '%'); // Fix: Change 'search_name' to 'searchByCin'
-        // }
 
         $stagiaires = $query->get();
         return response()->json($stagiaires);

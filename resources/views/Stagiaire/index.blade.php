@@ -6,158 +6,135 @@
         <div class="container-xxl flex-grow-1 container-p-y">
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
             <div class="row">
-                <div class="col-md-8">
-                    <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> Add stagiaire</a>
+                <div class="col-md-9">
+                    <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> <i
+                            class='bx bxs-user-plus'></i></i> Add stagiaire </a>
                 </div>
-                <div class="col-md-4">
-                    <a href="{{ route('stagiaire.create') }}" class="btn btn-success  mb-4"> Add stagiaire</a>
+                <div class="col-md-3">
+                    <a href="{{ route('beneficiaire.create') }}" class="btn btn-secondary mb-4"><i
+                            class='bx bxs-user-plus'></i> Add Beneficiaire </a>
                 </div>
             </div>
             <!-- Basic Bootstrap Table -->
             <div class="card ">
-                <h4 class="fw-bold py-3 m-2"> Rechercher</h4>
-                <div class="row ">
-                    <div class="col-md-4">
-                        <div class="row">
-                            <label class=" col-form-label" for="">CIN</label>
+                <div class="m-4">
+                    <h4 class="fw-bold py-3 m-2"> Rechercher</h4>
+                    <div class="row ">
+                        <div class="col-md-4">
+                            <div class="row">
+                                <label class=" col-form-label" for="">CIN</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="searchByCin" name="searchByCin"
+                                        placeholder="searchByCin..." aria-label="searchByCin..."
+                                        aria-describedby="basic-addon-search31" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <label class=" col-form-label" for=""> Nom</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="searchByName" name="search_name"
+                                        placeholder="SearchByName..." aria-label="Search..."
+                                        aria-describedby="basic-addon-search31" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="row">
+                                <label class=" col-form-label" for=""> Prenom</label>
+                                <div class="col-sm-10">
+                                    <input type="text" class="form-control" id="searchByPrenom" name="searchByPrenom"
+                                        placeholder="searchByPrenom..." aria-label="Search..."
+                                        aria-describedby="basic-addon-search31" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-form-label" for="basic-default-poles">filieres</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="searchByCin" name="searchByCin"
-                                    placeholder="searchByCin..." aria-label="searchByCin..."
-                                    aria-describedby="basic-addon-search31" />
+                                <select class="form-select" id="searchByFiliere" aria-label="Default select example"
+                                    name="filere">
+                                    <option value="">Toutes les filières</option>
+                                    <option value="DEV101">DEV101</option>
+                                    <option value="DEV102">DEV102</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="row">
-                            <label class=" col-form-label" for=""> Nom</label>
+                        <div class="col-md-4">
+                            <label class="col-form-label" for="basic-default-poles">GROUPE</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="searchByName" name="search_name"
-                                    placeholder="SearchByName..." aria-label="Search..."
-                                    aria-describedby="basic-addon-search31" />
+                                <select class="form-select" id="searchByGroupe" aria-label="Default select example"
+                                    name="filere">
+                                    <option value="">Tous les groupes</option>
+                                    <option value="DEV101">DEV101</option>
+                                    <option value="DEV102">DEV102</option>
+                                </select>
                             </div>
                         </div>
-                    </div>
-                    <div class="col-md-4">
-                        <div class="row">
-                            <label class=" col-form-label" for=""> Prenom</label>
+                        <div class="col-md-4">
+                            <label class="col-form-label" for="searchBystatut">Statuts</label>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control" id="searchByPrenom" name="searchByPrenom"
-                                    placeholder="searchByPrenom..." aria-label="Search..."
-                                    aria-describedby="basic-addon-search31" />
+                                <select class="form-select" id="searchBystatut" aria-label="Default select example"
+                                    name="statut">
+                                    <option value="">Tous les statuts</option>
+                                    <option value="SENSIBILAISE">Sensibilisé</option>
+                                    <option value="FORME">Formé</option>
+                                    <option value="VISITER_INCUBATEUR">Visité l'incubateur</option>
+                                    <option value="PROTRUR_PROJET">Porteur de projet</option>
+                                </select>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="col-form-label" for="basic-default-poles">filieres</label>
-                        <div class="col-sm-10">
-                            <select class="form-select" id="searchByFiliere" aria-label="Default select example"
-                                name="filere">
-                                <option value="">Toutes les filières</option>
-                                <option value="DEV101">DEV101</option>
-                                <option value="DEV102">DEV102</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="col-form-label" for="basic-default-poles">GROUPE</label>
-                        <div class="col-sm-10">
-                            <select class="form-select" id="searchByGroupe" aria-label="Default select example"
-                                name="filere">
-                                <option value="">Tous les groupes</option>
-                                <option value="DEV101">DEV101</option>
-                                <option value="DEV102">DEV102</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-4">
-                        <label class="col-form-label" for="basic-default-poles">GROUPE</label>
-                        <div class="col-sm-10">
-                            <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example"
-                                name="filere">
-                                <option selected>DEV101</option>
-                                <option selected>DEV102</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="row mb-3">
-                        <label class="col-form-label" for="basic-default-cin_stag">stagaiaire </label>
-                        <div class="col-sm-10">
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input" type="radio" name="statut" id="inlineRadio2"
-                                    value="FORME" />
-                                <label class="col-form-labell " for="inlineCheckbox2">Sensibilisé</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2"
-                                    value="VISITER_INCUBATEUR" />
-                                <label class="form-check-label " for="inlineCheckbox2">Visité I'incubateur</label>
-                            </div>
-                            <div class="form-check form-check-inline">
-                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2"
-                                    value="PROTRUR_PROJET" />
-                                <label class="form-check-label " for="inlineCheckbox2">Porteur de projet</label>
-                            </div>
-                            @error('statut')
-                                <div class="alert alert-danger">{{ $message }}</div>
-                            @enderror
                         </div>
                     </div>
                 </div>
                 <hr />
                 <div class="card m-4">
-                    <h5 class="card-header">Table les Stagiaire</h5>
+                    <div class="row ">
+                        <div class="col-md-8">
+                            <h5 class="card-header">Table les Stagiaire</h5>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="col-form-label" for="searchBystatut">Items par page :</label>
+                            <div class="col-sm-10">
+                                <select class="form-select" id="pageSize" aria-label="Default select example"
+                                    name="statut" style="width: 70px">
+                                    <option value="1">1</option>
+                                    <option value="5">5</option>
+                                    <option value="7">7</option>
+                                    <option value="10" selected>10</option>
+                                    <option value="20">20</option>
+                                    <option value="50">50</option>
+                                    <option value="100">100</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
                     <div class="table-responsive text-nowrap" id="search_result">
                         <table class="table" id="stagiairesTable">
                             <thead class="table-light">
                                 <tr>
-                                    <th>MARICULE</th>
                                     <th>CIN</th>
                                     <th>NOM & prénom</th>
                                     <th>STATUT</th>
+                                    <th>email</th>
                                     <th>filére</th>
                                     <th>GROUPE</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                                @foreach ($stagiaires as $stagiaire)
-                                    <tr>
-                                        <td>{{ $stagiaire->matricule }}</td>
-                                        <td>{{ $stagiaire->cin }}</td>
-                                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i>
-                                            <strong>{{ $stagiaire->nom }}
-                                                {{ $stagiaire->prenom }}</strong>
-                                        </td>
-                                        <td><span class="badge bg-label-primary me-1">{{ $stagiaire->statut }}</span></td>
-                                        <td> {{ $stagiaire->filere }}</td>
-                                        <td> {{ $stagiaire->groupe }}</td>
-                                        <td>
-                                            <div class="dropdown">
-                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown">
-                                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                                </button>
-                                                <div class="dropdown-menu">
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="bx bx-edit-alt me-1"></i>
-                                                        Edit</a>
-                                                    <a class="dropdown-item" href="javascript:void(0);"><i
-                                                            class="bx bx-trash me-1"></i>
-                                                        Delete</a>
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-
                             </tbody>
                         </table>
-                        <label for="pageSize">Items par page :</label>
-                        <input type="number" id="pageSize" value="5" min="1" step="1">
+                        <div class="row m-2 ">
+                            <div class="col-md-8">
+                            </div>
+                            <div class="col-md-4">
+                                <nav aria-label="Page navigation">
+                                    <ul class="pagination">
 
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                            </ul>
-                        </nav>
+                                    </ul>
+                                </nav>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -171,8 +148,7 @@
             $(document).ready(function() {
                 $('#pageSize').on('change', function() {
                     var newSize = parseInt($(this).val());
-                    if (!isNaN(newSize) && newSize >
-                        0) { // Vérifie que newSize est un nombre et plus grand que 0
+                    if (!isNaN(newSize) && newSize > 0) {
                         pageSize = newSize;
                         currentPage = 1;
                         updateTable();
@@ -189,28 +165,56 @@
                     var startIndex = (currentPage - 1) * pageSize;
                     var endIndex = startIndex + pageSize;
                     var paginatedItems = stagiaires.slice(startIndex, endIndex);
-
                     $.each(paginatedItems, function(index, stag) {
+                        var statutBadge = '';
+                        switch (stag.statut) {
+                            case 'FORME':
+                                statutBadge = '<span class="badge bg-label-success me-1">FORME</span>';
+                                break;
+                            case 'SENSIBILAISE':
+                                statutBadge = '<span class="badge bg-label-warning me-1">SENSIBILAISE</span>';
+                                break;
+                            case 'VISITER INCUBATEUR':
+                                statutBadge =
+                                    '<span class="badge bg-label-primary me-1">VISITER INCUBATEUR</span>';
+                                break;
+                            case 'PROTRUR PROJET':
+                                statutBadge = '<span class="badge bg-label-info me-1">PROTRUR PROJET</span>';
+                                break;
+                            default:
+                                statutBadge = '';
+                        }
                         var row = `<tr>
-                        <td>${stag.matricule}</td>
-                        <td>${stag.cin}</td>
-                        <td><i class="fab fa-angular fa-lg text-danger me-3"></i> ${stag.nom} ${stag.prenom}</td>
-                        <td><span class="badge bg-label-primary me-1">${stag.statut}</span></td>
-                        <td>${stag.filere}</td>
-                        <td>${stag.groupe}</td>
-                    </tr>`;
+                                            <td>${stag.cin}</td>
+                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> ${stag.nom} ${stag.prenom}</td>
+                                            <td>${statutBadge}</td>
+                                            <td>${stag.email}</td>
+                                            <td>${stag.filere}</td>
+                                            <td>${stag.groupe}</td>
+                                            <td>
+                                                <div class="dropdown">
+                                                    <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                        <i class="bx bx-dots-vertical-rounded"></i>
+                                                    </button>
+                                                    <div class="dropdown-menu">
+                                                        <a class="dropdown-item" href={{ url('/stagiaire/${stag.id}/edit') }}>
+                                                            <i class="bx bx-edit-alt me-2"></i> Edit
+                                                        </a>
+                                                        <a class="dropdown-item" href="javascript:void(0);">
+                                                            Delete
+                                                        </a>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>`;
                         tableBody.append(row);
                     });
-
                     updatePagination();
                 }
-
                 function updatePagination() {
                     var pageCount = Math.ceil(stagiaires.length / pageSize);
                     var paginationUl = $('.pagination');
                     paginationUl.empty();
-
-                    // Bouton Précédent
                     var prevLiClass = currentPage === 1 ? 'page-item disabled' : 'page-item';
                     var prevPageItem =
                         `<li class="${prevLiClass}"><a class="page-link" href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>`;
@@ -221,13 +225,9 @@
                             updateTable();
                         }
                     }).appendTo(paginationUl);
-
-                    // Numéro de la page actuelle
                     var currentPageItem =
                         `<li class="page-item active"><a class="page-link" href="#">${currentPage}</a></li>`;
                     $(currentPageItem).appendTo(paginationUl);
-
-                    // Bouton Suivant
                     var nextLiClass = currentPage === pageCount ? 'page-item disabled' : 'page-item';
                     var nextPageItem =
                         `<li class="${nextLiClass}"><a class="page-link" href="#" aria-label="Next"><span aria-hidden="true">&raquo;</span></a></li>`;
@@ -244,7 +244,8 @@
                     var searchByName = $('#searchByName').val().toLowerCase();
                     var searchByPrenom = $('#searchByPrenom').val().toLowerCase();
                     var searchByFiliere = $('#searchByFiliere').val();
-                    var searchByGroupe = $('#searchByGroupe').val();
+                    var searchBystatut = $('#searchBystatut').val();
+                    var searchByGroupe = $('#searchByGroupe').val().toLowerCase();
                     $.ajax({
                         url: "/stagiairesdata",
                         type: "GET",
@@ -254,9 +255,10 @@
                                     stag.nom.toLowerCase().includes(searchByName) &&
                                     stag.prenom.toLowerCase().includes(searchByPrenom) &&
                                     (searchByFiliere === "" || stag.filere === searchByFiliere) &&
-                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) && ;
+                                    (searchBystatut === "" || stag.statut === searchBystatut) &&
+                                    (searchByGroupe === "" || stag.groupe === searchByGroupe);
                             });
-                            currentPage = 1; // Réinitialiser à la première page
+                            currentPage = 1; // Reset to the first page
                             updateTable();
                         }
                     });
@@ -265,7 +267,7 @@
                 $('#searchByCin, #searchByName, #searchByPrenom').on('keyup', search);
                 // Bind the search function to the 'change' event for Filiere and Groupe selectors
                 $('#searchByFiliere, #searchByGroupe').on('change', search);
-                // Initial search to populate table on page load
+                // Initial search to populate the table on page load
                 search();
             });
         </script>
