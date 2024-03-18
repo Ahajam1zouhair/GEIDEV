@@ -6,6 +6,7 @@
     <title>CMC | DIGITAL FACTORY</title>
 
     <meta name="description" content="" />
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="https://cmc.ac.ma/sites/default/files/images/header/cmc-logo.png" />

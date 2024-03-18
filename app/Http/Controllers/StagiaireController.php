@@ -100,7 +100,7 @@ class StagiaireController extends Controller
             'date_naissance' => 'required',
             'tel' => 'required',
         ];
-    
+
         if ($request->input('type_stag') === "externe") {
             $validationRules['commentaire'] = 'required';
         } else {
@@ -109,21 +109,26 @@ class StagiaireController extends Controller
             $validationRules['groupe'] = 'required';
             $validationRules['niveau'] = 'required';
         }
-    
+
         $validated = $request->validate($validationRules);
         $stagiaire->update($validated);
-    
+
         return redirect()->route('stagiaire.index');
     }
-    
+
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(Stagiaire $stagiaire)
     {
-        //
+        // Supprime le stagiaire spécifié de la base de données
+        $stagiaire->delete();
+
+        // Redirige l'utilisateur vers la liste des stagiaires avec un message de session
+        return redirect()->route('stagiaire.index')->with('success', 'Stagiaire supprimé avec succès.');
     }
+    
     public function apiIndex(Request $request)
     {
         $query = Stagiaire::query();

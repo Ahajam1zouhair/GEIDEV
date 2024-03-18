@@ -159,6 +159,7 @@
                 var pageSize = 10;
                 var currentPage = 1;
                 var stagiaires = [];
+
                 function updateTable() {
                     var tableBody = $('#stagiairesTable tbody');
                     tableBody.empty();
@@ -184,6 +185,7 @@
                             default:
                                 statutBadge = '';
                         }
+                        var csrfToken = $('meta[name="csrf-token"]').attr('content');
                         var row = `<tr>
                                             <td>${stag.cin}</td>
                                             <td><i class="fab fa-angular fa-lg text-danger me-3"></i> ${stag.nom} ${stag.prenom}</td>
@@ -200,9 +202,13 @@
                                                         <a class="dropdown-item" href={{ url('/stagiaire/${stag.id}/edit') }}>
                                                             <i class="bx bx-edit-alt me-2"></i> Edit
                                                         </a>
-                                                        <a class="dropdown-item" href="javascript:void(0);">
-                                                            Delete
-                                                        </a>
+                                                        <form id="deleteForm-${stag.id}" action="/stagiaire/${stag.id}" method="POST">
+                                                            <input type="hidden" name="_token" value="${csrfToken}">
+                                                            <input type="hidden" name="_method" value="DELETE">
+                                                            <button type="submit" class="btn btn-sm bg-success-light me-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire?')">
+                                                                Delete
+                                                            </button>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </td>
@@ -211,6 +217,7 @@
                     });
                     updatePagination();
                 }
+
                 function updatePagination() {
                     var pageCount = Math.ceil(stagiaires.length / pageSize);
                     var paginationUl = $('.pagination');
@@ -239,6 +246,7 @@
                         }
                     }).appendTo(paginationUl);
                 }
+
                 function search() {
                     var searchByCin = $('#searchByCin').val().toLowerCase();
                     var searchByName = $('#searchByName').val().toLowerCase();
@@ -255,12 +263,8 @@
                                     stag.nom.toLowerCase().includes(searchByName) &&
                                     stag.prenom.toLowerCase().includes(searchByPrenom) &&
                                     (searchByFiliere === "" || stag.filere === searchByFiliere) &&
-<<<<<<< HEAD
                                     (searchBystatut === "" || stag.statut === searchBystatut) &&
                                     (searchByGroupe === "" || stag.groupe === searchByGroupe);
-=======
-                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) ;
->>>>>>> 57cf230906d8a6be128b9bc9d75734e116e5332a
                             });
                             currentPage = 1; // Reset to the first page
                             updateTable();
