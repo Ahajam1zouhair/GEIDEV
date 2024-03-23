@@ -23,10 +23,12 @@ class beneficiaireFactory extends Factory
                 'cin' => $this->faker->swiftBicNumber(),
                 'nom' => $this->faker->firstName(),
                 'prenom' => $this->faker->lastName(),
+                
                 'date_naissance' => $this->faker->date($format = 'Y-m-d', $max = 'now'),
                 'tel' => $this->faker->phoneNumber,
                 'email' => $this->faker->email(),
                 'type_stag' => 'externe',
+                'niveau' => $this->faker->randomElement(['NIVEAU TECHNICIEN SPECIALISE', 'NIVEAU TECHNICIEN', 'NIVEAU QUALIFICATION']),
                 'commentaire' => $this->faker->text($maxNbChars = 200),
     
             ];

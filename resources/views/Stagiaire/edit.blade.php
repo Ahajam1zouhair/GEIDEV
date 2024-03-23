@@ -200,32 +200,28 @@
                                         <div class="col-sm-10">
                                             <div
                                                 class="form-check form-check-inline mt-3 @error('cin_stag') is-invalid @enderror">
-                                                {{-- <input class="form-check-input" type="" id="inlineCheckbox1"
-                                                value="homme" /> --}}
                                                 <input class="form-check-input" type="radio" name="statut"
-                                                    id="inlineRadio1" value="SENSIBILAISE"
-                                                    {{ $stagiaire->statut === 'SENSIBILAISE' ? 'checked' : '' }} />
+                                                    id="inlineRadio1" value="SENSIBILAISE" @checked(old('SENSIBILAISE', $stagiaire->statut)) />
                                                 <label class="form-check-label bg-label-warning"
                                                     for="inlineCheckbox1">SENSIBILAISE</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input" type="radio" name="statut"
-                                                    id="inlineRadio2" value="FORME"
-                                                    {{ $stagiaire->statut === 'FORME' ? 'checked' : '' }} />
+                                                    id="inlineRadio2" value="FORME" @checked(old('FORME', $stagiaire->statut)) />
                                                 <label class="col-form-labell bg-label-success"
                                                     for="inlineCheckbox2">FORME</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input " type="radio" name="statut"
                                                     id="inlineRadio2" value="VISITER_INCUBATEUR"
-                                                    {{ $stagiaire->statut === 'VISITER_INCUBATEUR' ? 'checked' : '' }} />
+                                                    @checked(old('VISITER INCUBATEUR', $stagiaire->statut)) />
                                                 <label class="form-check-label bg-label-primary"
                                                     for="inlineCheckbox2">VISITER INCUBATEUR</label>
                                             </div>
                                             <div class="form-check form-check-inline">
                                                 <input class="form-check-input " type="radio" name="statut"
                                                     id="inlineRadio2" value="PROTRUR_PROJET"
-                                                    {{ $stagiaire->statut === 'PROTRUR_PROJET' ? 'checked' : '' }} />
+                                                    @checked(old('PROTRUR_PROJET', $stagiaire->statut)) />
                                                 <label class="form-check-label bg-label-info "
                                                     for="inlineCheckbox2">PROTRUR PROJET</label>
                                             </div>
