@@ -19,6 +19,24 @@
             <div class="card ">
                 <div class="m-4">
                     <h4 class="fw-bold py-3 m-2"> Rechercher</h4>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label class="form-label" for="type_stag">Type:</label>
+                                <div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType" value="externe">
+                                        <label class="form-check-label" for="typeExterne">Externe</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType" value="Interne">
+                                        <label class="form-check-label" for="typeInterne">Interne</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="row ">
                         <div class="col-md-4">
                             <div class="row">
@@ -119,6 +137,7 @@
                                     <th>email</th>
                                     <th>filére</th>
                                     <th>GROUPE</th>
+                                    <th>Type_stag</th>
                                 </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
@@ -193,6 +212,7 @@
                                             <td>${stag.email}</td>
                                             <td>${stag.filere}</td>
                                             <td>${stag.groupe}</td>
+                                            <td>${stag.type_stag}</td>
                                             <td>
                                                 <div class="dropdown">
                                                     <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -205,8 +225,7 @@
                                                         <form id="deleteForm-${stag.id}" action="/stagiaire/${stag.id}" method="POST">
                                                             <input type="hidden" name="_token" value="${csrfToken}">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <button type="submit" class="dropdown-item btn btn-sm bg-success-light me-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire?')">
-                                                                <i class="bx bx-trash me-2"></i>
+                                                            <button type="submit" class="btn btn-sm bg-success-light me-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire?')">
                                                                 Delete
                                                             </button>
                                                         </form>
@@ -255,6 +274,7 @@
                     var searchByFiliere = $('#searchByFiliere').val();
                     var searchBystatut = $('#searchBystatut').val();
                     var searchByGroupe = $('#searchByGroupe').val().toLowerCase();
+                    var searchByType = $('input[name="type_stag"]:checked').val();
                     $.ajax({
                         url: "/stagiairesdata",
                         type: "GET",
@@ -265,7 +285,8 @@
                                     stag.prenom.toLowerCase().includes(searchByPrenom) &&
                                     (searchByFiliere === "" || stag.filere === searchByFiliere) &&
                                     (searchBystatut === "" || stag.statut === searchBystatut) &&
-                                    (searchByGroupe === "" || stag.groupe === searchByGroupe);
+                                    (searchByGroupe === "" || stag.groupe === searchByGroupe) &&
+                                    (!searchByType || stag.type_stag === searchByType);
                             });
                             currentPage = 1; // Reset to the first page
                             updateTable();
@@ -275,7 +296,7 @@
                 // Bind the search function to the 'keyup' event for CIN, Nom, and Prenom inputs
                 $('#searchByCin, #searchByName, #searchByPrenom').on('keyup', search);
                 // Bind the search function to the 'change' event for Filiere and Groupe selectors
-                $('#searchByFiliere, #searchByGroupe').on('change', search);
+                $('#searchByFiliere, #searchByGroupe, input[name="type_stag"]').on('change', search);
                 // Initial search to populate the table on page load
                 search();
             });
