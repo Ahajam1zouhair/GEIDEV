@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\DachboardController;
 use App\Http\Controllers\StagiaireController;
 use Illuminate\Support\Facades\Route;
 
@@ -14,10 +15,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('Dashboard.Dashboard');
-});
-
+// Route::get('/', function () {
+//     return view('Dashboard.Dashboard');
+// });
+Route::get('/', [DachboardController::class, 'index']);
 Route::resource('/stagiaire', StagiaireController::class);
 // Route::post('/stagiaire/Beneficiaire', [StagiaireController::class, 'createBeneficiaire'])->name('stagiaire.createBeneficiaire');
 Route::get('/stagiairesdata', [StagiaireController::class, 'apiIndex']);

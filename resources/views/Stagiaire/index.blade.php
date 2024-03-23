@@ -96,10 +96,10 @@
                                 <select class="form-select" id="searchBystatut" aria-label="Default select example"
                                     name="statut">
                                     <option value="">Tous les statuts</option>
-                                    <option value="SENSIBILAISE">Sensibilisé</option>
-                                    <option value="FORME">Formé</option>
-                                    <option value="VISITER_INCUBATEUR">Visité l'incubateur</option>
-                                    <option value="PROTRUR_PROJET">Porteur de projet</option>
+                                    <option value="SENSIBILAISE">SENSIBILAISE</option>
+                                    <option value="FORME">FORME</option>
+                                    <option value="VISITER INCUBATEUR">VISITER INCUBATEUR</option>
+                                    <option value="PROTRUR PROJET">PROTRUR PROJET</option>
                                 </select>
                             </div>
                         </div>
@@ -112,7 +112,7 @@
                             <h5 class="card-header">Table les Stagiaire</h5>
                         </div>
                         <div class="col-md-4">
-                            <label class="col-form-label" for="searchBystatut">Items par page :</label>
+                            <label class="col-form-label">Items par page :</label>
                             <div class="col-sm-10">
                                 <select class="form-select" id="pageSize" aria-label="Default select example"
                                     name="statut" style="width: 70px">
@@ -149,7 +149,6 @@
                             <div class="col-md-4">
                                 <nav aria-label="Page navigation">
                                     <ul class="pagination">
-
                                     </ul>
                                 </nav>
                             </div>
@@ -159,7 +158,6 @@
             </div>
         </div>
     @endsection
-
 
     @section('javescript')
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -178,7 +176,6 @@
                 var pageSize = 10;
                 var currentPage = 1;
                 var stagiaires = [];
-
                 function updateTable() {
                     var tableBody = $('#stagiairesTable tbody');
                     tableBody.empty();
@@ -296,7 +293,7 @@
                 // Bind the search function to the 'keyup' event for CIN, Nom, and Prenom inputs
                 $('#searchByCin, #searchByName, #searchByPrenom').on('keyup', search);
                 // Bind the search function to the 'change' event for Filiere and Groupe selectors
-                $('#searchByFiliere, #searchByGroupe, input[name="type_stag"]').on('change', search);
+                $('#searchByFiliere, #searchByGroupe , #searchBystatut, input[name="type_stag"]').on('change', search);
                 // Initial search to populate the table on page load
                 search();
             });
