@@ -13,20 +13,20 @@ return new class extends Migration
     {
         Schema::create('stagiaires', function (Blueprint $table) {
             $table->id();
-            $table->string("matricule")->default('')->nullable();
+            $table->string("matricule")->default('-')->nullable();
             $table->string("civilite");
             $table->string("cin");          
             $table->string("nom");
             $table->string("prenom");
             $table->string("statut");
-            $table->string("filere")->default('')->nullable();
-            $table->string("groupe")->default('')->nullable();
+            $table->string("filere")->default('-')->nullable();
+            $table->string("groupe")->default('-')->nullable();
             $table->string("tel");
             $table->string("email");
             $table->date("date_naissance");
             $table->string("type_stag");
-            $table->string("niveau")->default('')->nullable();
-            $table->text('commentaire')->default('')->nullable();
+            $table->string("niveau")->default('-')->nullable();
+            $table->text('commentaire')->default('-')->nullable();
             $table->timestamps();
         });
     }

@@ -205,7 +205,8 @@
                                                         <form id="deleteForm-${stag.id}" action="/stagiaire/${stag.id}" method="POST">
                                                             <input type="hidden" name="_token" value="${csrfToken}">
                                                             <input type="hidden" name="_method" value="DELETE">
-                                                            <button type="submit" class="btn btn-sm bg-success-light me-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire?')">
+                                                            <button type="submit" class="dropdown-item btn btn-sm bg-success-light me-2" onclick="return confirm('Êtes-vous sûr de vouloir supprimer ce stagiaire?')">
+                                                                <i class="bx bx-trash me-2"></i>
                                                                 Delete
                                                             </button>
                                                         </form>
