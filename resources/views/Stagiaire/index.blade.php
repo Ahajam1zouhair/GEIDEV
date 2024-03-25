@@ -135,8 +135,8 @@
                             <thead class="table-light">
                                 <tr>
                                     <th> <i class='bx bx-sort' id="buttonSortById">ID</i> </th>
-                                    <th> <i class='bx bx-sort' id="buttonSortByCin">CIN</i></i></th>
-                                    <th> <i class='bx bx-sort' id="buttonSortByNom">NOM prénomm</i></i></th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByCin">CIN</i></th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByNom"></i>NOM prénomm</th>
                                     <th> <i class='bx bx-sort' id="buttonSortByStatut"></i> STATUT </th>
                                     <th> <i class='bx bx-sort' id="buttonSortByEmail"></i> email</th>
                                     <th>filére</th>

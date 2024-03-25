@@ -35,36 +35,88 @@
                     <div class="card-header d-flex align-items-center justify-content-between pb-0">
                         <div class="card-title mb-0">
                             <h5 class="m-0 me-2"> Status Statistics </h5>
-                            <small class="text-muted">42.82k Total Sales</small>
                         </div>
                     </div>
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center mb-3">
                             <div class="d-flex flex-column align-items-center gap-1">
-                
-                                <h5 class="mb-2"><span class="text-muted">nombre total de stagiaires :</span> {{ $totaleStagiaires }}</h5>
+
+                                <h5 class="mb-2"><span class="text-muted">nombre total de stagiaires :</span>
+                                    {{ $totaleStagiaires }}</h5>
                             </div>
                             {{-- <div style="display: none" id='poles' data-poles='@json($poles)'></div> --}}
-                            <div style="display: none" id='totaleStagiairesStatuts' data-totaleStagiairesStatuts='@json($totaleStagiairesStatuts)'>
+                            <div style="display: none" id='totaleStagiairesStatuts'
+                                data-totaleStagiairesStatuts='@json($totaleStagiairesStatuts)'>
                             </div>
                             <div id="orderStatisticsChart">
-                
+
                             </div>
                         </div>
                         <ul class="p-0 m-0">
                             @foreach ($totaleStagiairesStatuts as $item)
                                 <li class="d-flex mb-4 pb-1">
-                                    <div class="avatar flex-shrink-0 me-3">
-                                        <span class="avatar-initial rounded bg-label-primary"><i class="bx bx-mobile-alt"></i></span>
-                                    </div>
-                                    <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
-                                        <div class="me-2">
-                                            <h6 class="mb-0">{{ $item['name'] }}</h6>
+                                    @switch($item)
+                                        @case($item['name'] === 'SENSIBILAISE')
+                                            <div class="avatar flex-shrink-0 me-3">
+                                                <img src="../assets/img/icons/unicons/cc-warning.png" alt="User"
+                                                    class="rounded" />
+                                            </div>
+                                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                <div class="me-2">
+                                                    <h5 class="mb-0">{{ $item['name'] }}</h5>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <h6 class="fw-semibold">{{ $item['value'] }}</h6>
+                                                </div>
+                                            </div>
+                                        @break
+
+                                        @case($item['name'] === 'FORME')
+                                            <div class="avatar flex-shrink-0 me-3">
+                                                <img src="../assets/img/icons/unicons/cc-success.png" alt="User"
+                                                    class="rounded" />
+                                            </div>
+                                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                <div class="me-2">
+                                                    <h5 class="mb-0">{{ $item['name'] }}</h5>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <h6 class="fw-semibold">{{ $item['value'] }}</h6>
+                                                </div>
+                                            </div>
+                                        @break
+
+                                        @case($item['name'] === 'PROTRUR PROJET')
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            <img src="../assets/img/icons/unicons/wallet.png" alt="User" class="rounded" />
                                         </div>
-                                        <div class="user-progress">
-                                            <small class="fw-semibold">{{ $item['value'] }}</small>
+                                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                <div class="me-2">
+                                                    <h5 class="mb-0">{{ $item['name'] }}</h5>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <h6 class="fw-semibold">{{ $item['value'] }}</h6>
+                                                </div>
+                                            </div>
+                                        @break
+
+                                        @case($item['name'] === 'VISITER INCUBATEUR')
+                                        <div class="avatar flex-shrink-0 me-3">
+                                            <img src="../assets/img/icons/unicons/cc-primary.png" alt="User"
+                                                class="rounded" />
                                         </div>
-                                    </div>
+                                            <div class="d-flex w-100 flex-wrap align-items-center justify-content-between gap-2">
+                                                <div class="me-2">
+                                                    <h5 class="mb-0">{{ $item['name'] }}</h5>
+                                                </div>
+                                                <div class="user-progress">
+                                                    <h6 class="fw-semibold">{{ $item['value'] }}</h6>
+                                                </div>
+                                            </div>
+                                        @break
+
+                                        @default
+                                    @endswitch
                                 </li>
                             @endforeach
                         </ul>

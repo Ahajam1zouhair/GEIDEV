@@ -487,7 +487,7 @@
                     labels: {
                         show: true,
                         value: {
-                            fontSize: "1.5rem",
+                            fontSize: "1.2rem",
                             fontFamily: "Public Sans",
                             color: headingColor,
                             offsetY: -15,
@@ -501,11 +501,11 @@
                         },
                         total: {
                             show: true,
-                            fontSize: "0.8125rem",
+                            fontSize: "0.7rem",
                             color: axisColor,
-                            label: "",
+                            label: "100%",
                             formatter: function (w) {
-                                return "";
+                                return "Status";
                             },
                         },
                     },

@@ -24,19 +24,20 @@
         </li>
         <li class="menu-item{{ Request::is('/') ? ' active' : '' }}">
             <a href={{ url('/') }} class="menu-link">
+                <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
             </a>
         </li>
         <li class="menu-header small text-uppercase">
-            <span class="menu-header-text">Pages</span>
+            <span class="menu-header-text"></span>
         </li>
         <li class="menu-item{{ Request::is('stagiaire*', 'beneficiaire*') ? ' active' : '' }}">
             <a href="{{ url('/stagiaire') }}" class="menu-link">
-               
-                <span class="align-middle">Stagiaire</span>
+                <i class="menu-icon tf-icons bx bx-table"></i>
+                <div data-i18n="Analytics">Stagiaire</div>
             </a>
         </li>
-        
+
 
         <li class="menu-header small text-uppercase">
             <span class="menu-header-text">Settings</span>
