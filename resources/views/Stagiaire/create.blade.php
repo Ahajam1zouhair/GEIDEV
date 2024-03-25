@@ -12,10 +12,9 @@
                     <div class="card-body">
                         <div>
                             <input type="radio" id="typeInterne" name="type_stag" value="interne" checked>
-                            <label for="typeInterne">Interne</label>
-
+                            <label for="typeInterne"  class="bg-label-primary m-2">Interne</label>
                             <input type="radio" id="typeExterne" name="type_stag" value="externe">
-                            <label for="typeExterne">Externe</label>
+                            <label for="typeExterne" class="bg-label-secondary m-2 ">Externe</label>
                         </div>
                         <div id="champsInterne">
                             <form action="{{ route('stagiaire.store') }}" method="POST" enctype="multipart/form-data">
@@ -176,11 +175,11 @@
                                                 <label class="col-form-labell bg-label-success" for="inlineCheckbox2">FORME</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="VISITER_INCUBATEUR" />
+                                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="VISITER INCUBATEUR" />
                                                 <label class="form-check-label bg-label-primary" for="inlineCheckbox2">VISITER INCUBATEUR</label>
                                             </div>
                                             <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="PROTRUR_PROJET" />
+                                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="PROTRUR PROJET" />
                                                 <label class="form-check-label bg-label-info " for="inlineCheckbox2">PROTRUR PROJET</label>
                                             </div>
                                             @error('statut')

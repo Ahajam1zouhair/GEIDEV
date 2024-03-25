@@ -7,12 +7,8 @@
             <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
             <div class="row">
                 <div class="col-md-9">
-                    <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> <i
-                            class='bx bxs-user-plus'></i></i> Add stagiaire </a>
-                </div>
-                <div class="col-md-3">
-                    <a href="{{ route('beneficiaire.create') }}" class="btn btn-secondary mb-4"><i
-                            class='bx bxs-user-plus'></i> Add Beneficiaire </a>
+                    <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> <i class='bx bxs-user-plus'></i>
+                        Add stagiaire </a>
                 </div>
             </div>
             <!-- Basic Bootstrap Table -->
@@ -22,14 +18,21 @@
                     <div class="row">
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label class="form-label" for="type_stag">Type:</label>
+                                <label class="form-label" for="type_stag">Type </label>
                                 <div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType" value="externe">
+                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType"
+                                            value="" checked>
+                                        <label class="form-check-label" for="typeInterne">All</label>
+                                    </div>
+                                    <div class="form-check form-check-inline">
+                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType"
+                                            value="externe">
                                         <label class="form-check-label" for="typeExterne">Externe</label>
                                     </div>
                                     <div class="form-check form-check-inline">
-                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType" value="Interne">
+                                        <input class="form-check-input" type="radio" name="type_stag" id="searchByType"
+                                            value="Interne">
                                         <label class="form-check-label" for="typeInterne">Interne</label>
                                     </div>
                                 </div>
@@ -112,7 +115,7 @@
                             <h5 class="card-header">Table les Stagiaire</h5>
                         </div>
                         <div class="col-md-4">
-                            <label class="col-form-label">Items par page :</label>
+                            <label class="col-form-label">Items par page</label>
                             <div class="col-sm-10">
                                 <select class="form-select" id="pageSize" aria-label="Default select example"
                                     name="statut" style="width: 70px">
@@ -131,10 +134,11 @@
                         <table class="table" id="stagiairesTable">
                             <thead class="table-light">
                                 <tr>
-                                    <th>CIN</th>
-                                    <th>NOM & prénom</th>
-                                    <th>STATUT</th>
-                                    <th>email</th>
+                                    <th> <i class='bx bx-sort' id="buttonSortById">ID</i> </th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByCin">CIN</i></i></th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByNom">NOM prénomm</i></i></th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByStatut"></i> STATUT </th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByEmail"></i> email</th>
                                     <th>filére</th>
                                     <th>GROUPE</th>
                                     <th>Type_stag</th>
@@ -176,12 +180,16 @@
                 var pageSize = 10;
                 var currentPage = 1;
                 var stagiaires = [];
+
                 function updateTable() {
                     var tableBody = $('#stagiairesTable tbody');
                     tableBody.empty();
                     var startIndex = (currentPage - 1) * pageSize;
                     var endIndex = startIndex + pageSize;
+
                     var paginatedItems = stagiaires.slice(startIndex, endIndex);
+                    // Tri des stagiaires par ID dans l'ordre décroissant
+
                     $.each(paginatedItems, function(index, stag) {
                         var statutBadge = '';
                         switch (stag.statut) {
@@ -203,8 +211,9 @@
                         }
                         var csrfToken = $('meta[name="csrf-token"]').attr('content');
                         var row = `<tr>
+                                            <td>${stag.id}</td>
                                             <td>${stag.cin}</td>
-                                            <td><i class="fab fa-angular fa-lg text-danger me-3"></i> ${stag.nom} ${stag.prenom}</td>
+                                            <td> ${stag.nom} ${stag.prenom}</td>
                                             <td>${statutBadge}</td>
                                             <td>${stag.email}</td>
                                             <td>${stag.filere}</td>
@@ -264,6 +273,53 @@
                     }).appendTo(paginationUl);
                 }
 
+                function sortStagiaires(sortBy, descending) {
+                    stagiaires.sort(function(a, b) {
+                        if (sortBy === 'id') {
+                            return descending ? b.id - a.id : a.id - b.id;
+                        } else if (sortBy === 'nom') {
+                            return descending ? b.nom.localeCompare(a.nom) : a.nom.localeCompare(b.nom);
+                        } else if (sortBy === 'cin') {
+                            return descending ? b.cin.localeCompare(a.cin) : a.cin.localeCompare(b.cin);
+                        } else if (sortBy === 'statut') {
+                            return descending ? b.statut.localeCompare(a.statut) : a.statut.localeCompare(b
+                                .statut);
+                        } else if (sortBy === 'email') {
+                            return descending ? b.email.localeCompare(a.email) : a.email.localeCompare(b.email);
+                        } else {
+                            return 0;
+                        }
+                    });
+                    updateTable();
+                }
+
+                $('#buttonSortById').on('click', function() {
+                    var descending = $(this).data('descending');
+                    sortStagiaires('id', descending);
+                    $(this).data('descending', !descending);
+                });
+
+                $('#buttonSortByNom').on('click', function() {
+                    var descending = $(this).data('descending');
+                    sortStagiaires('nom', descending);
+                    $(this).data('descending', !descending);
+                });
+                $('#buttonSortByCin').on('click', function() {
+                    var descending = $(this).data('descending');
+                    sortStagiaires('cin', descending);
+                    $(this).data('descending', !descending);
+                });
+                $('#buttonSortByStatut').on('click', function() {
+                    var descending = $(this).data('descending');
+                    sortStagiaires('statut', descending);
+                    $(this).data('descending', !descending);
+                });
+                $('#buttonSortByEmail').on('click', function() {
+                    var descending = $(this).data('descending');
+                    sortStagiaires('email', descending);
+                    $(this).data('descending', !descending);
+                });
+
                 function search() {
                     var searchByCin = $('#searchByCin').val().toLowerCase();
                     var searchByName = $('#searchByName').val().toLowerCase();
@@ -296,6 +352,7 @@
                 $('#searchByFiliere, #searchByGroupe , #searchBystatut, input[name="type_stag"]').on('change', search);
                 // Initial search to populate the table on page load
                 search();
+                updateTable();
             });
         </script>
     @endsection
