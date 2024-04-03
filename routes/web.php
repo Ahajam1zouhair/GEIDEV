@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DachboardController;
+use App\Http\Controllers\GroupesController;
 use App\Http\Controllers\StagiaireController;
 use Illuminate\Support\Facades\Route;
 
@@ -22,4 +23,5 @@ Route::get('/', [DachboardController::class, 'index']);
 Route::resource('/stagiaire', StagiaireController::class);
 // Route::post('/stagiaire/Beneficiaire', [StagiaireController::class, 'createBeneficiaire'])->name('stagiaire.createBeneficiaire');
 Route::get('/stagiairesdata', [StagiaireController::class, 'apiIndex']);
+Route::get('/groupesdata', [GroupesController::class, 'apiCreate']);
 Route::get('/beneficiaire/create', [StagiaireController::class, 'createBeneficiaire'])->name('beneficiaire.create');

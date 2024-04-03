@@ -188,7 +188,6 @@
                     var endIndex = startIndex + pageSize;
 
                     var paginatedItems = stagiaires.slice(startIndex, endIndex);
-                    // Tri des stagiaires par ID dans l'ordre décroissant
 
                     $.each(paginatedItems, function(index, stag) {
                         var statutBadge = '';

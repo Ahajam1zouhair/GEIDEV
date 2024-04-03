@@ -1,388 +1,467 @@
 @extends('Layouts.mastare')
 
 @section('content')
-<div class="content-wrapper">
-    <!-- Content -->
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add stagiaire</h4>
-        <div class="row">
-            <!-- Basic Layout -->
-            <div class="col-xxl">
-                <div class="card mb-4">
-                    <div class="card-body">
-                        <div>
-                            <input type="radio" id="typeInterne" name="type_stag" value="interne" checked>
-                            <label for="typeInterne"  class="bg-label-primary m-2">Interne</label>
-                            <input type="radio" id="typeExterne" name="type_stag" value="externe">
-                            <label for="typeExterne" class="bg-label-secondary m-2 ">Externe</label>
-                        </div>
-                        <div id="champsInterne">
-                            <form action="{{ route('stagiaire.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-4" style="display: none;">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="Interne" id="disabledCheck2" name="type_stag"  checked />
-                                            <label class="form-check-label" for="disabledCheck2">Interne </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <label class=" col-form-label" for="">matricule stagiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('matricule') is-invalid @enderror" id="basic-default-nom_stag" placeholder="matricule stagiaire" name="matricule" />
-                                                @error('matricule')
-                                                <div class="alert alert-danger ">{{ $message }}</div>
-                                                @enderror
+    <div class="content-wrapper">
+        <!-- Content -->
+        <div class="container-xxl flex-grow-1 container-p-y">
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add stagiaire</h4>
+            <div class="row">
+                <!-- Basic Layout -->
+                <div class="col-xxl">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <div>
+                                <input type="radio" id="typeInterne" name="type_stag" value="interne" checked>
+                                <label for="typeInterne" class="bg-label-primary m-2">Interne</label>
+                                <input type="radio" id="typeExterne" name="type_stag" value="externe">
+                                <label for="typeExterne" class="bg-label-secondary m-2 ">Externe</label>
+                            </div>
+                            <div id="champsInterne">
+                                <form action="{{ route('stagiaire.store') }}" method="POST" enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4" style="display: none;">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="Interne"
+                                                    id="disabledCheck2" name="type_stag" checked />
+                                                <label class="form-check-label" for="disabledCheck2">Interne </label>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <label class=" col-form-label" for="">nom stagiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('nom') is-invalid @enderror" id="basic-default-nom" placeholder="nom stagiaire" name="nom" />
-                                                @error('nom')
-                                                <div class="alert alert-danger ">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class="col-form-label" for="basic-default-prenom">prenom stagiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('prenom') is-invalid @enderror" id="basic-default-prenom" placeholder="prenom stagiaire" name="prenom" />
-                                                @error('prenom')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class="col-form-label" for="basic-default-civilite">Genre : </label>
-                                            <div class="col-sm-10">
-                                                <div class="form-check form-check-inline mt-3 @error('civilite') is-invalid @enderror">
-                                                    <input class="form-check-input" type="radio" name="civilite" id="inlineRadio1" value="homme" />
-                                                    <label class="form-check-label" for="inlineCheckbox1">homme</label>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <label class=" col-form-label" for="">matricule stagiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('matricule') is-invalid @enderror"
+                                                        id="basic-default-nom_stag" placeholder="matricule stagiaire"
+                                                        name="matricule" />
+                                                    @error('matricule')
+                                                        <div class="alert alert-danger ">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="civilite" id="inlineRadio2" value="femme" />
-                                                    <label class="form-check-label" for="inlineCheckbox2">femme</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <label class=" col-form-label" for="">nom stagiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('nom') is-invalid @enderror"
+                                                        id="basic-default-nom" placeholder="nom stagiaire" name="nom" />
+                                                    @error('nom')
+                                                        <div class="alert alert-danger ">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
-                                                @error('civilite')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-form-label" for="basic-default-cin">Cin stagiaire
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control @error('cin') is-invalid @enderror" id="basic-default-cin" placeholder="cin " name="cin" />
-                                            @error('cin')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class=" col-form-label" for="basic-default-date_naissance">date
-                                                naissance stagiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="date" class="form-control @error('date_naissance') is-invalid @enderror" id="basic-default-date_naissance" placeholder="date naissance stagiaire" name="date_naissance" />
-                                                @error('date_naissance')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class="col-form-label" for="basic-default-prenom">prenom
+                                                    stagiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('prenom') is-invalid @enderror"
+                                                        id="basic-default-prenom" placeholder="prenom stagiaire"
+                                                        name="prenom" />
+                                                    @error('prenom')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-
-
-                                        <div class="row mb-3">
-                                            <label class=" col-form-label" for="basic-default-tel">tel
-                                                stagiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="text" class="form-control @error('tel') is-invalid @enderror" id="basic-default-tel" placeholder="tel stagiaire" name="tel" />
-                                                @error('tel')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class="col-form-label" for="basic-default-civilite">Genre : </label>
+                                                <div class="col-sm-10">
+                                                    <div
+                                                        class="form-check form-check-inline mt-3 @error('civilite') is-invalid @enderror">
+                                                        <input class="form-check-input" type="radio" name="civilite"
+                                                            id="inlineRadio1" value="homme" />
+                                                        <label class="form-check-label" for="inlineCheckbox1">homme</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="civilite"
+                                                            id="inlineRadio2" value="femme" />
+                                                        <label class="form-check-label" for="inlineCheckbox2">femme</label>
+                                                    </div>
+                                                    @error('civilite')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
                                             </div>
                                         </div>
-
-                                    </div>
-                                    <div class="col-md-4">
-
-                                        <div class="row mb-3">
-                                            <label class=" col-form-label" for="basic-default-tel">email  stagiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="basic-default-email" placeholder="email stagiaire" name="email" />
-                                                @error('email')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-4">
-                                        <label class="col-form-label" for="basic-default-niveau">niveau</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-select @error('niveau') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="niveau">
-                                                <option selected>niveau</option>
-                                                <option selected>DEV101</option>
-                                                <option selected>DEV102</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-form-label" for="basic-default-poles">filieres</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-select @error('filere') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="filere">
-                                                <option selected>Les filieres</option>
-                                                <option selected>DEV101</option>
-                                                <option selected>DEV102</option>
-                                            </select>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-form-label" for="basic-default-poles">groupe</label>
-                                        <div class="col-sm-10">
-                                            <select class="form-select @error('groupe') is-invalid @enderror" id="exampleFormControlSelect1" aria-label="Default select example" name="groupe">
-                                                <option selected>Les groupes</option>
-                                                <option selected>DEV101</option>
-                                                <option selected>DEV102</option>
-                                            </select>
-                                        </div>
-                                    </div>
-
-
-
-                                    <div class="row mb-3">
-                                        <label class="col-form-label" for="basic-default-cin_stag">statut </label>
-                                        <div class="col-sm-10">
-                                            <div class="form-check form-check-inline mt-3 @error('cin_stag') is-invalid @enderror">
-                                                {{-- <input class="form-check-input" type="" id="inlineCheckbox1"
-                                                    value="homme" /> --}}
-                                                <input class="form-check-input" type="radio" name="statut" id="inlineRadio1" value="SENSIBILAISE" />
-                                                <label class="form-check-label bg-label-warning" for="inlineCheckbox1">SENSIBILAISE</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="statut" id="inlineRadio2" value="FORME" />
-                                                <label class="col-form-labell bg-label-success" for="inlineCheckbox2">FORME</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="VISITER INCUBATEUR" />
-                                                <label class="form-check-label bg-label-primary" for="inlineCheckbox2">VISITER INCUBATEUR</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="statut" id="inlineRadio2" value="PROTRUR PROJET" />
-                                                <label class="form-check-label bg-label-info " for="inlineCheckbox2">PROTRUR PROJET</label>
-                                            </div>
-                                            @error('statut')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label"> commentaire</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="commentaire" rows="3"></textarea>
-                                        @error('commentaire')
-                                        <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
-                                    </div>
-                                </div>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">submit</button>
-                                </div>
-                            </form>
-                        </div>
-                        <div id="champsExterne" style="display: none;">
-                            <form action="{{ route('stagiaire.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="row">
-                                    <div class="col-md-4" style="display: none;">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" value="externe"
-                                                id="disabledCheck2" name="type_stag" checked />
-                                            <label class="form-check-label" for="disabledCheck2">externe </label>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row">
-                                            <label class=" col-form-label" for="">nom</label>
-                                            <div class="col-sm-10">
-                                                <input type="text"
-                                                    class="form-control @error('nom') is-invalid @enderror"
-                                                    id="basic-default-nom" placeholder="nom stagiaire" name="nom" />
-                                                @error('nom')
-                                                    <div class="alert alert-danger ">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class="col-form-label" for="basic-default-prenom">prenom
+                                        <div class="col-md-4">
+                                            <label class="col-form-label" for="basic-default-cin">Cin stagiaire
                                             </label>
                                             <div class="col-sm-10">
                                                 <input type="text"
-                                                    class="form-control @error('prenom') is-invalid @enderror"
-                                                    id="basic-default-prenom" placeholder="prenom stagiaire"
-                                                    name="prenom" />
-                                                @error('prenom')
+                                                    class="form-control @error('cin') is-invalid @enderror"
+                                                    id="basic-default-cin" placeholder="cin " name="cin" />
+                                                @error('cin')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class="col-form-label" for="basic-default-civilite">Genre : </label>
-                                            <div class="col-sm-10">
-                                                <div
-                                                    class="form-check form-check-inline mt-3 @error('civilite') is-invalid @enderror">
-                                                    <input class="form-check-input" type="radio" name="civilite"
-                                                        id="inlineRadio1" value="homme" />
-                                                    <label class="form-check-label" for="inlineCheckbox1">homme</label>
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class=" col-form-label" for="basic-default-date_naissance">date
+                                                    naissance stagiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="date"
+                                                        class="form-control @error('date_naissance') is-invalid @enderror"
+                                                        id="basic-default-date_naissance"
+                                                        placeholder="date naissance stagiaire" name="date_naissance" />
+                                                    @error('date_naissance')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
                                                 </div>
-                                                <div class="form-check form-check-inline">
-                                                    <input class="form-check-input" type="radio" name="civilite"
-                                                        id="inlineRadio2" value="femme" />
-                                                    <label class="form-check-label" for="inlineCheckbox2">femme</label>
-                                                </div>
-                                                @error('civilite')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <label class="col-form-label" for="basic-default-cin">Cin
-                                        </label>
-                                        <div class="col-sm-10">
-                                            <input type="text" class="form-control @error('cin') is-invalid @enderror"
-                                                id="basic-default-cin" placeholder="cin " name="cin" />
-                                            @error('cin')
-                                                <div class="alert alert-danger">{{ $message }}</div>
-                                            @enderror
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class=" col-form-label" for="basic-default-date_naissance">date
-                                                naissance </label>
-                                            <div class="col-sm-10">
-                                                <input type="date"
-                                                    class="form-control @error('date_naissance') is-invalid @enderror"
-                                                    id="basic-default-date_naissance" placeholder="date naissance stagiaire"
-                                                    name="date_naissance" />
-                                                @error('date_naissance')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class=" col-form-label" for="basic-default-tel">tel
-                                                Bénéficiaire</label>
-                                            <div class="col-sm-10">
-                                                <input type="text"
-                                                    class="form-control @error('tel') is-invalid @enderror"
-                                                    id="basic-default-tel" placeholder="tel stagiaire" name="tel" />
-                                                @error('tel')
-                                                    <div class="alert alert-danger">{{ $message }}</div>
-                                                @enderror
                                             </div>
                                         </div>
 
-                                    </div>
-                                    <div class="col-md-4">
-                                        <div class="row mb-3">
-                                            <label class=" col-form-label" for="basic-default-tel">email </label>
+                                        <div class="col-md-4">
+
+
+                                            <div class="row mb-3">
+                                                <label class=" col-form-label" for="basic-default-tel">tel
+                                                    stagiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('tel') is-invalid @enderror"
+                                                        id="basic-default-tel" placeholder="tel stagiaire"
+                                                        name="tel" />
+                                                    @error('tel')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                        <div class="col-md-4">
+
+                                            <div class="row mb-3">
+                                                <label class=" col-form-label" for="basic-default-tel">email
+                                                    stagiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        id="basic-default-email" placeholder="email stagiaire"
+                                                        name="email" />
+                                                    @error('email')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-md-4">
+                                            <label class="col-form-label" for="basic-default-niveau">niveau</label>
                                             <div class="col-sm-10">
-                                                <input type="email"
-                                                    class="form-control @error('email') is-invalid @enderror"
-                                                    id="basic-default-email" placeholder="email stagiaire"
-                                                    name="email" />
-                                                @error('email')
+                                                <select class="form-select @error('niveau') is-invalid @enderror"
+                                                    id="exampleFormControlSelect1" aria-label="Default select example"
+                                                    name="niveau">
+                                                    <option selected>Technicien Spécialisé</option>
+                                                    <option selected>Technicien</option>
+                                                    <option selected>Qualification</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="col-form-label" for="basic-default-poles">filieres</label>
+                                            <div class="col-sm-10">
+                                                <select class="form-select @error('filere') is-invalid @enderror"
+                                                    id="exampleFormControlSelect1" aria-label="Default select example"
+                                                    name="filere" id="filierSelect" onchange="filierbyId()">
+                                                    @foreach ($fillres as $filire)
+                                                        <option value="{{ $filire->id }}">{{ $filire->name_filire }}
+                                                        </option>
+                                                    @endforeach
+                                                </select>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="col-form-label" for="basic-default-poles">groupe</label>
+                                            <div class="col-sm-10" id="groupesSelect">
+
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label class="col-form-label" for="basic-default-cin_stag">statut </label>
+                                            <div class="col-sm-10">
+                                                <div
+                                                    class="form-check form-check-inline mt-3 @error('cin_stag') is-invalid @enderror">
+                                                    {{-- <input class="form-check-input" type="" id="inlineCheckbox1"
+                                                    value="homme" /> --}}
+                                                    <input class="form-check-input" type="radio" name="statut"
+                                                        id="inlineRadio1" value="SENSIBILAISE" />
+                                                    <label class="form-check-label bg-label-warning"
+                                                        for="inlineCheckbox1">SENSIBILAISE</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="statut"
+                                                        id="inlineRadio2" value="FORME" />
+                                                    <label class="col-form-labell bg-label-success"
+                                                        for="inlineCheckbox2">FORME</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input " type="radio" name="statut"
+                                                        id="inlineRadio2" value="VISITER INCUBATEUR" />
+                                                    <label class="form-check-label bg-label-primary"
+                                                        for="inlineCheckbox2">VISITER INCUBATEUR</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input " type="radio" name="statut"
+                                                        id="inlineRadio2" value="PROTRUR PROJET" />
+                                                    <label class="form-check-label bg-label-info "
+                                                        for="inlineCheckbox2">PROTRUR PROJET</label>
+                                                </div>
+                                                @error('statut')
                                                     <div class="alert alert-danger">{{ $message }}</div>
                                                 @enderror
                                             </div>
                                         </div>
-                                    </div>
-                                    <div class="row mb-3">
-                                        <label class="col-form-label" for="basic-default-cin_stag">statut </label>
-                                        <div class="col-sm-10">
-                                            <div
-                                                class="form-check form-check-inline mt-3 @error('cin_stag') is-invalid @enderror">
-                                                <input class="form-check-input" type="radio" name="statut"
-                                                    id="inlineRadio1" value="SENSIBILAISE" />
-                                                <label class="form-check-label bg-label-warning"
-                                                    for="inlineCheckbox1">SENSIBILAISE</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input" type="radio" name="statut"
-                                                    id="inlineRadio2" value="FORME" />
-                                                <label class="col-form-labell bg-label-success"
-                                                    for="inlineCheckbox2">FORME</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="statut"
-                                                    id="inlineRadio2" value="VISITER_INCUBATEUR" />
-                                                <label class="form-check-label bg-label-primary"
-                                                    for="inlineCheckbox2">VISITER INCUBATEUR</label>
-                                            </div>
-                                            <div class="form-check form-check-inline">
-                                                <input class="form-check-input " type="radio" name="statut"
-                                                    id="inlineRadio2" value="PROTRUR_PROJET" />
-                                                <label class="form-check-label bg-label-info "
-                                                    for="inlineCheckbox2">PROTRUR PROJET</label>
-                                            </div>
-                                            @error('statut')
+                                        <div class="row mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">
+                                                commentaire</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="commentaire" rows="3"></textarea>
+                                            @error('commentaire')
                                                 <div class="alert alert-danger">{{ $message }}</div>
                                             @enderror
                                         </div>
                                     </div>
-                                    <div class="row mb-3">
-                                        <label for="exampleFormControlTextarea1" class="form-label"> commentaire</label>
-                                        <textarea class="form-control" id="exampleFormControlTextarea1" name="commentaire" rows="3"></textarea>
-                                        @error('commentaire')
-                                            <div class="alert alert-danger">{{ $message }}</div>
-                                        @enderror
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">submit</button>
                                     </div>
-                                </div>
-                                <div class="col-sm-10">
-                                    <button type="submit" class="btn btn-primary">submit</button>
-                                </div>
-                            </form>
+                                </form>
+                            </div>
+                            <div id="champsExterne" style="display: none;">
+                                <form action="{{ route('stagiaire.store') }}" method="POST"
+                                    enctype="multipart/form-data">
+                                    @csrf
+                                    <div class="row">
+                                        <div class="col-md-4" style="display: none;">
+                                            <div class="form-check">
+                                                <input class="form-check-input" type="checkbox" value="externe"
+                                                    id="disabledCheck2" name="type_stag" checked />
+                                                <label class="form-check-label" for="disabledCheck2">externe </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row">
+                                                <label class=" col-form-label" for="">nom</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('nom') is-invalid @enderror"
+                                                        id="basic-default-nom" placeholder="nom stagiaire"
+                                                        name="nom" />
+                                                    @error('nom')
+                                                        <div class="alert alert-danger ">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class="col-form-label" for="basic-default-prenom">prenom
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('prenom') is-invalid @enderror"
+                                                        id="basic-default-prenom" placeholder="prenom stagiaire"
+                                                        name="prenom" />
+                                                    @error('prenom')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class="col-form-label" for="basic-default-civilite">Genre :
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <div
+                                                        class="form-check form-check-inline mt-3 @error('civilite') is-invalid @enderror">
+                                                        <input class="form-check-input" type="radio" name="civilite"
+                                                            id="inlineRadio1" value="homme" />
+                                                        <label class="form-check-label"
+                                                            for="inlineCheckbox1">homme</label>
+                                                    </div>
+                                                    <div class="form-check form-check-inline">
+                                                        <input class="form-check-input" type="radio" name="civilite"
+                                                            id="inlineRadio2" value="femme" />
+                                                        <label class="form-check-label"
+                                                            for="inlineCheckbox2">femme</label>
+                                                    </div>
+                                                    @error('civilite')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <label class="col-form-label" for="basic-default-cin">Cin
+                                            </label>
+                                            <div class="col-sm-10">
+                                                <input type="text"
+                                                    class="form-control @error('cin') is-invalid @enderror"
+                                                    id="basic-default-cin" placeholder="cin " name="cin" />
+                                                @error('cin')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class=" col-form-label" for="basic-default-date_naissance">date
+                                                    naissance </label>
+                                                <div class="col-sm-10">
+                                                    <input type="date"
+                                                        class="form-control @error('date_naissance') is-invalid @enderror"
+                                                        id="basic-default-date_naissance"
+                                                        placeholder="date naissance stagiaire" name="date_naissance" />
+                                                    @error('date_naissance')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class=" col-form-label" for="basic-default-tel">tel
+                                                    Bénéficiaire</label>
+                                                <div class="col-sm-10">
+                                                    <input type="text"
+                                                        class="form-control @error('tel') is-invalid @enderror"
+                                                        id="basic-default-tel" placeholder="tel stagiaire"
+                                                        name="tel" />
+                                                    @error('tel')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="row mb-3">
+                                                <label class=" col-form-label" for="basic-default-tel">email </label>
+                                                <div class="col-sm-10">
+                                                    <input type="email"
+                                                        class="form-control @error('email') is-invalid @enderror"
+                                                        id="basic-default-email" placeholder="email stagiaire"
+                                                        name="email" />
+                                                    @error('email')
+                                                        <div class="alert alert-danger">{{ $message }}</div>
+                                                    @enderror
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label class="col-form-label" for="basic-default-cin_stag">statut </label>
+                                            <div class="col-sm-10">
+                                                <div
+                                                    class="form-check form-check-inline mt-3 @error('cin_stag') is-invalid @enderror">
+                                                    <input class="form-check-input" type="radio" name="statut"
+                                                        id="inlineRadio1" value="SENSIBILAISE" />
+                                                    <label class="form-check-label bg-label-warning"
+                                                        for="inlineCheckbox1">SENSIBILAISE</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input" type="radio" name="statut"
+                                                        id="inlineRadio2" value="FORME" />
+                                                    <label class="col-form-labell bg-label-success"
+                                                        for="inlineCheckbox2">FORME</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input " type="radio" name="statut"
+                                                        id="inlineRadio2" value="VISITER_INCUBATEUR" />
+                                                    <label class="form-check-label bg-label-primary"
+                                                        for="inlineCheckbox2">VISITER INCUBATEUR</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                    <input class="form-check-input " type="radio" name="statut"
+                                                        id="inlineRadio2" value="PROTRUR_PROJET" />
+                                                    <label class="form-check-label bg-label-info "
+                                                        for="inlineCheckbox2">PROTRUR PROJET</label>
+                                                </div>
+                                                @error('statut')
+                                                    <div class="alert alert-danger">{{ $message }}</div>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                        <div class="row mb-3">
+                                            <label for="exampleFormControlTextarea1" class="form-label">
+                                                commentaire</label>
+                                            <textarea class="form-control" id="exampleFormControlTextarea1" name="commentaire" rows="3"></textarea>
+                                            @error('commentaire')
+                                                <div class="alert alert-danger">{{ $message }}</div>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn btn-primary">submit</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 @endsection
 
-@section('javescript')
-<script>
-    $(document).ready(function() {
-        // Détecte un changement sur les boutons radio du type de stagiaire
-        $('input[type="radio"][name="type_stag"]').change(function() {
-            if (this.value == 'interne') {
-                $("#champsInterne").show();
-                $("#champsExterne").hide();
+@section('javascript')
+    <script>
+        $(document).ready(function() {
+            // Détecte un changement sur les boutons radio du type de stagiaire
+            $('input[type="radio"][name="type_stag"]').change(function() {
+                if (this.value == 'interne') {
+                    $("#champsInterne").show();
+                    $("#champsExterne").hide();
+                } else if (this.value == 'externe') {
+                    $("#champsExterne").show();
+                    $("#champsInterne").hide();
+                }
+            });
+
+            $('#filierSelect').change(function() {
+                filierbyId();
+            });
+
+            function updateTable(groupes) {
+                var groupesSelect = $('#groupesSelect');
+                groupesSelect.empty();
+                $.each(groupes, function(index, groupe) {
+                    var statutBadge = '';
+                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
+                    var row = `
+                        <select class="form-select groupe-select" aria-label="Default select example" name="groupe">
+                            <option value="">Les groupes</option>
+                            ${generateGroupOptions(groupe)}
+                        </select>
+                    `;
+                    groupesSelect.append(row);
+                });
             }
-            else if (this.value == 'externe') {
-                $("#champsExterne").show();
-                $("#champsInterne").hide();
+
+            function generateGroupOptions(groupe) {
+                var options = '';
+                options += `<option value="${groupe.id}">${groupe.nom}</option>`;
+                return options;
+            }
+
+            function filierbyId() {
+                var filierId = $('#filierSelect').val();
+                $.ajax({
+                    url: "/groupesdata",
+                    type: "GET",
+                    data: {
+                        filier_id: filierId
+                    },
+                    success: function(data) {
+                        updateTable(data);
+                    }
+                });
             }
         });
-    });
     </script>
 @endsection

@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Filires;
+use App\Models\groupes;
 use App\Models\Stagiaire;
 use Illuminate\Http\Request;
 
@@ -21,7 +23,9 @@ class StagiaireController extends Controller
      */
     public function create()
     {
-        return view('Stagiaire.create');
+        $fillres = Filires::all();
+        $groupes = groupes::all();
+        return view('Stagiaire.create', compact('fillres', 'groupes'));
     }
     public function createBeneficiaire()
     {
@@ -128,7 +132,7 @@ class StagiaireController extends Controller
         // Redirige l'utilisateur vers la liste des stagiaires avec un message de session
         return redirect()->route('stagiaire.index')->with('success', 'Stagiaire supprimé avec succès.');
     }
-    
+
     public function apiIndex(Request $request)
     {
         $query = Stagiaire::query();
