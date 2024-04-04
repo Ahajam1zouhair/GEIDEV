@@ -2,19 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Filires;
-use App\Http\Requests\StoreFiliresRequest;
-use App\Http\Requests\UpdateFiliresRequest;
+use App\Models\Filieres;
+use Illuminate\Http\Request;
 
-
-class FiliresController extends Controller
+class FilieresController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        
+        //
     }
 
     /**
@@ -22,13 +20,13 @@ class FiliresController extends Controller
      */
     public function create()
     {
-        // vi
+        //
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreFiliresRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -36,7 +34,7 @@ class FiliresController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Filires $filires)
+    public function show(Filieres $filieres)
     {
         //
     }
@@ -44,7 +42,7 @@ class FiliresController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Filires $filires)
+    public function edit(Filieres $filieres)
     {
         //
     }
@@ -52,7 +50,7 @@ class FiliresController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateFiliresRequest $request, Filires $filires)
+    public function update(Request $request, Filieres $filieres)
     {
         //
     }
@@ -60,7 +58,7 @@ class FiliresController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Filires $filires)
+    public function destroy(Filieres $filieres)
     {
         //
     }

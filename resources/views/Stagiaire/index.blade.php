@@ -8,7 +8,7 @@
             <div class="row">
                 <div class="col-md-9">
                     <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> <i class='bx bxs-user-plus'></i>
-                        Add stagiaire </a>
+                        Add Bénéficiare </a>
                 </div>
             </div>
             <!-- Basic Bootstrap Table -->
@@ -75,7 +75,7 @@
                             <label class="col-form-label" for="basic-default-poles">filieres</label>
                             <div class="col-sm-10">
                                 <select class="form-select" id="searchByFiliere" aria-label="Default select example"
-                                    name="filere">
+                                    name="filiere">
                                     <option value="">Toutes les filières</option>
                                     <option value="DEV101">DEV101</option>
                                     <option value="DEV102">DEV102</option>
@@ -86,7 +86,7 @@
                             <label class="col-form-label" for="basic-default-poles">GROUPE</label>
                             <div class="col-sm-10">
                                 <select class="form-select" id="searchByGroupe" aria-label="Default select example"
-                                    name="filere">
+                                    name="filiere">
                                     <option value="">Tous les groupes</option>
                                     <option value="DEV101">DEV101</option>
                                     <option value="DEV102">DEV102</option>
@@ -136,10 +136,10 @@
                                 <tr>
                                     <th> <i class='bx bx-sort' id="buttonSortById">ID</i> </th>
                                     <th> <i class='bx bx-sort' id="buttonSortByCin">CIN</i></th>
-                                    <th> <i class='bx bx-sort' id="buttonSortByNom"></i>NOM prénomm</th>
+                                    <th> <i class='bx bx-sort' id="buttonSortByNom"></i>NOM prénom</th>
                                     <th> <i class='bx bx-sort' id="buttonSortByStatut"></i> STATUT </th>
                                     <th> <i class='bx bx-sort' id="buttonSortByEmail"></i> email</th>
-                                    <th>filére</th>
+                                    <th>filiere</th>
                                     <th>GROUPE</th>
                                     <th>Type_stag</th>
                                 </tr>
@@ -215,7 +215,7 @@
                                             <td> ${stag.nom} ${stag.prenom}</td>
                                             <td>${statutBadge}</td>
                                             <td>${stag.email}</td>
-                                            <td>${stag.filere}</td>
+                                            <td>${stag.filiere}</td>
                                             <td>${stag.groupe}</td>
                                             <td>${stag.type_stag}</td>
                                             <td>
@@ -335,7 +335,7 @@
                                 return stag.cin.toLowerCase().includes(searchByCin) &&
                                     stag.nom.toLowerCase().includes(searchByName) &&
                                     stag.prenom.toLowerCase().includes(searchByPrenom) &&
-                                    (searchByFiliere === "" || stag.filere === searchByFiliere) &&
+                                    (searchByFiliere === "" || stag.filiere === searchByFiliere) &&
                                     (searchBystatut === "" || stag.statut === searchBystatut) &&
                                     (searchByGroupe === "" || stag.groupe === searchByGroupe) &&
                                     (!searchByType || stag.type_stag === searchByType);

@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('filires', function (Blueprint $table) {
+        Schema::create('groupes', function (Blueprint $table) {
             $table->id();
-            $table->string('pole');
-            $table->string('name_filire');
-            $table->string('niveau');
+            $table->string("name_groupes");
+            $table->foreignId("filiere_id")->constrained('filieres')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('filires');
+        Schema::dropIfExists('groupes');
     }
 };

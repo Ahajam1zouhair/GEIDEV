@@ -168,11 +168,11 @@
                                         <div class="col-md-4">
                                             <label class="col-form-label" for="basic-default-poles">filieres</label>
                                             <div class="col-sm-10">
-                                                <select class="form-select @error('filere') is-invalid @enderror"
+                                                <select class="form-select @error('filiere') is-invalid @enderror"
                                                     id="exampleFormControlSelect1" aria-label="Default select example"
-                                                    name="filere" id="filierSelect" onchange="filierbyId()">
-                                                    @foreach ($fillres as $filire)
-                                                        <option value="{{ $filire->id }}">{{ $filire->name_filire }}
+                                                    name="filiere" id="filierSelect" onchange="filierbyId()">
+                                                    @foreach ($filieres as $filiere)
+                                                        <option value="{{ $filiere->id }}">{{ $filiere->name_filiere }}
                                                         </option>
                                                     @endforeach
                                                 </select>
@@ -409,59 +409,20 @@
     </div>
 @endsection
 
-@section('javascript')
-    <script>
-        $(document).ready(function() {
-            // Détecte un changement sur les boutons radio du type de stagiaire
-            $('input[type="radio"][name="type_stag"]').change(function() {
-                if (this.value == 'interne') {
-                    $("#champsInterne").show();
-                    $("#champsExterne").hide();
-                } else if (this.value == 'externe') {
-                    $("#champsExterne").show();
-                    $("#champsInterne").hide();
-                }
-            });
-
-            $('#filierSelect').change(function() {
-                filierbyId();
-            });
-
-            function updateTable(groupes) {
-                var groupesSelect = $('#groupesSelect');
-                groupesSelect.empty();
-                $.each(groupes, function(index, groupe) {
-                    var statutBadge = '';
-                    var csrfToken = $('meta[name="csrf-token"]').attr('content');
-                    var row = `
-                        <select class="form-select groupe-select" aria-label="Default select example" name="groupe">
-                            <option value="">Les groupes</option>
-                            ${generateGroupOptions(groupe)}
-                        </select>
-                    `;
-                    groupesSelect.append(row);
-                });
+@section('javescript')
+<script>
+    $(document).ready(function() {
+        // Détecte un changement sur les boutons radio du type de stagiaire
+        $('input[type="radio"][name="type_stag"]').change(function() {
+            if (this.value == 'interne') {
+                $("#champsInterne").show();
+                $("#champsExterne").hide();
             }
-
-            function generateGroupOptions(groupe) {
-                var options = '';
-                options += `<option value="${groupe.id}">${groupe.nom}</option>`;
-                return options;
-            }
-
-            function filierbyId() {
-                var filierId = $('#filierSelect').val();
-                $.ajax({
-                    url: "/groupesdata",
-                    type: "GET",
-                    data: {
-                        filier_id: filierId
-                    },
-                    success: function(data) {
-                        updateTable(data);
-                    }
-                });
+            else if (this.value == 'externe') {
+                $("#champsExterne").show();
+                $("#champsInterne").hide();
             }
         });
+    });
     </script>
 @endsection

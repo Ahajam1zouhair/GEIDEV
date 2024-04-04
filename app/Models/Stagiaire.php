@@ -15,7 +15,7 @@ class Stagiaire extends Model
         'nom',
         'prenom',
         'statut',
-        'filere',
+        'filiere',
         'groupe',
         'tel',
         'date_naissance',

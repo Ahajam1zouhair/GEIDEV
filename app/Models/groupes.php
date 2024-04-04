@@ -15,6 +15,6 @@ class groupes extends Model
 
     public function filiere_Groupe()
     {
-        return $this->belongsTo(Filires::class, 'filiere_id');
+        return $this->belongsTo(Filieres::class, 'filiere_id');
     }
 }

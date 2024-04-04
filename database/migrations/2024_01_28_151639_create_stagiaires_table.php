@@ -15,11 +15,11 @@ return new class extends Migration
             $table->id();
             $table->string("matricule")->default('-')->nullable();
             $table->string("civilite");
-            $table->string("cin");          
+            $table->string("cin");
             $table->string("nom");
             $table->string("prenom");
             $table->string("statut");
-            $table->string("filere")->default('-')->nullable();
+            $table->string("filiere")->default('-')->nullable();
             $table->string("groupe")->default('-')->nullable();
             $table->string("tel");
             $table->string("email");

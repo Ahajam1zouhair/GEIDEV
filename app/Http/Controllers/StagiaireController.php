@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Filires;
+use App\Models\Filieres;
 use App\Models\groupes;
 use App\Models\Stagiaire;
 use Illuminate\Http\Request;
@@ -23,9 +23,9 @@ class StagiaireController extends Controller
      */
     public function create()
     {
-        $fillres = Filires::all();
+        $filieres = Filieres::all();
         $groupes = groupes::all();
-        return view('Stagiaire.create', compact('fillres', 'groupes'));
+        return view('Stagiaire.create', compact('filieres', 'groupes'));
     }
     public function createBeneficiaire()
     {
@@ -50,12 +50,12 @@ class StagiaireController extends Controller
             'type_stag' => 'required',
         ];
 
-        // Add conditional validation for 'commentaire' or 'filere', 'groupe', 'niveau'
+        // Add conditional validation for 'commentaire' or 'filiere', 'groupe', 'niveau'
         if ($request['type_stag'] === "externe") {
             $validationRules['commentaire'] = 'required';
         } else {
             $validationRules['matricule'] = 'required';
-            $validationRules['filere'] = 'required';
+            $validationRules['filiere'] = 'required';
             $validationRules['groupe'] = 'required';
             $validationRules['niveau'] = 'required';
         }
@@ -109,7 +109,7 @@ class StagiaireController extends Controller
             $validationRules['commentaire'] = 'required';
         } else {
             $validationRules['matricule'] = 'required';
-            $validationRules['filere'] = 'required';
+            $validationRules['filiere'] = 'required';
             $validationRules['groupe'] = 'required';
             $validationRules['niveau'] = 'required';
         }
