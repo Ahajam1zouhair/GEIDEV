@@ -14,8 +14,7 @@ return new class extends Migration
         Schema::create('filieres', function (Blueprint $table) {
             $table->id();
             $table->string('pole');
-            $table->string('name_filire');
-            $table->string('niveau');
+            $table->string('name_filiere');
             $table->timestamps();
         });
     }

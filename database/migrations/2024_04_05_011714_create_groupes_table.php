@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('groupes', function (Blueprint $table) {
             $table->id();
             $table->string("name_groupes");
+            $table->string('niveau');
             $table->foreignId("filiere_id")->constrained('filieres')->cascadeOnDelete()->cascadeOnUpdate();
             $table->timestamps();
         });

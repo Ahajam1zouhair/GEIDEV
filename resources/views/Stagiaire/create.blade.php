@@ -157,7 +157,7 @@
                                             <label class="col-form-label" for="basic-default-niveau">niveau</label>
                                             <div class="col-sm-10">
                                                 <select class="form-select @error('niveau') is-invalid @enderror"
-                                                    id="exampleFormControlSelect1" aria-label="Default select example"
+                                                    id="exampleFormControlSelect2" aria-label="Default select example"
                                                     name="niveau">
                                                     <option selected>Technicien Spécialisé</option>
                                                     <option selected>Technicien</option>
@@ -171,6 +171,7 @@
                                                 <select class="form-select @error('filiere') is-invalid @enderror"
                                                     id="exampleFormControlSelect1" aria-label="Default select example"
                                                     name="filiere" id="filierSelect" onchange="filierbyId()">
+                                                    <option>Choisir Filiere</option>
                                                     @foreach ($filieres as $filiere)
                                                         <option value="{{ $filiere->id }}">{{ $filiere->name_filiere }}
                                                         </option>
@@ -422,6 +423,35 @@
                 $("#champsExterne").show();
                 $("#champsInterne").hide();
             }
+        });
+    });
+    $(document).ready(function() {
+        $('#exampleFormControlSelect1').on('change', function() {
+            var filiereId = $(this).val();
+            var url = `/fetch-groupes/${filiereId}`;
+
+            $.ajax({
+                url: url,
+                type: 'GET',
+                dataType: 'json',
+                success: function(data) {
+                    var select = $('#groupesSelect');
+                    select.empty(); // Vide le contenu actuel
+                    select.append('<select class="form-select" name="groupe">');
+
+                    $.each(data, function(key, groupe) {
+                        select.find('select').append($('<option>', {
+                            value: groupe.id,
+                            text: groupe.name_groupes
+                        }));
+                    });
+
+                    select.append('</select>');
+                },
+                error: function(error) {
+                    console.log('Error:', error);
+                }
+            });
         });
     });
     </script>

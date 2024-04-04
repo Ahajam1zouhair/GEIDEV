@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Filieres;
+use App\Models\groupes;
 use Illuminate\Http\Request;
 
 class FilieresController extends Controller
@@ -61,5 +62,11 @@ class FilieresController extends Controller
     public function destroy(Filieres $filieres)
     {
         //
+    }
+
+    public function fetchGroupes($filiereId)
+    {
+        $groupes = groupes::where('filiere_id', $filiereId)->get();
+        return response()->json($groupes);
     }
 }

@@ -11,6 +11,7 @@ class groupes extends Model
     protected $fillable  = [
         "name_groupes",
         "filiere_id",
+        'niveau',
     ];
 
     public function filiere_Groupe()

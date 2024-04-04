@@ -11,6 +11,5 @@ class Filieres extends Model
     protected $fillable = [
         'pole',
         'name_filiere',
-        'niveau',
     ];
 }
