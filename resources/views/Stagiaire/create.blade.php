@@ -173,11 +173,15 @@
                                                     name="filiere" id="filierSelect" onchange="filierbyId()">
                                                     <option>Choisir Filiere</option>
                                                     @foreach ($filieres as $filiere)
-                                                        <option value="{{ $filiere->id }}">{{ $filiere->name_filiere }}
+                                                        <option data-id="{{ $filiere->id }}"
+                                                            value="{{ $filiere->name_filiere }}">
+                                                            {{ $filiere->name_filiere }}
                                                         </option>
                                                     @endforeach
                                                 </select>
                                             </div>
+                                            <!-- Champ caché pour stocker le nom de la filière sélectionnée -->
+                                            <input type="hidden" name="filiere_name" id="filiereName" value="">
                                         </div>
                                         <div class="col-md-4">
                                             <label class="col-form-label" for="basic-default-poles">groupe</label>
@@ -411,48 +415,52 @@
 @endsection
 
 @section('javescript')
-<script>
-    $(document).ready(function() {
-        // Détecte un changement sur les boutons radio du type de stagiaire
-        $('input[type="radio"][name="type_stag"]').change(function() {
-            if (this.value == 'interne') {
-                $("#champsInterne").show();
-                $("#champsExterne").hide();
-            }
-            else if (this.value == 'externe') {
-                $("#champsExterne").show();
-                $("#champsInterne").hide();
-            }
-        });
-    });
-    $(document).ready(function() {
-        $('#exampleFormControlSelect1').on('change', function() {
-            var filiereId = $(this).val();
-            var url = `/fetch-groupes/${filiereId}`;
-
-            $.ajax({
-                url: url,
-                type: 'GET',
-                dataType: 'json',
-                success: function(data) {
-                    var select = $('#groupesSelect');
-                    select.empty(); // Vide le contenu actuel
-                    select.append('<select class="form-select" name="groupe">');
-
-                    $.each(data, function(key, groupe) {
-                        select.find('select').append($('<option>', {
-                            value: groupe.id,
-                            text: groupe.name_groupes
-                        }));
-                    });
-
-                    select.append('</select>');
-                },
-                error: function(error) {
-                    console.log('Error:', error);
+    <script>
+        $(document).ready(function() {
+            // Détecte un changement sur les boutons radio du type de stagiaire
+            $('input[type="radio"][name="type_stag"]').change(function() {
+                if (this.value == 'interne') {
+                    $("#champsInterne").show();
+                    $("#champsExterne").hide();
+                } else if (this.value == 'externe') {
+                    $("#champsExterne").show();
+                    $("#champsInterne").hide();
                 }
             });
         });
-    });
+        $(document).ready(function() {
+            $('#exampleFormControlSelect1').on('change', function() {
+                // var filiereId = $(this).val();
+                // var url = `/fetch-groupes/${filiereId}`;
+                var filiereName = $(this).val();
+                var filiereId = $(this).find(':selected').data('id');
+
+                $('#filiereName').val(filiereName);
+                var url = `/fetch-groupes/${filiereId}`;
+
+                $.ajax({
+                    url: url,
+                    type: 'GET',
+                    dataType: 'json',
+                    success: function(data) {
+                        var select = $('#groupesSelect');
+                        select.empty(); // Vide le contenu actuel
+                        select.append('<select class="form-select" name="groupe">');
+
+                        $.each(data, function(key, groupe) {
+                            select.find('select').append($('<option>', {
+                                value: groupe.name_groupes,
+                                text: groupe.name_groupes
+                            }));
+                        });
+
+                        select.append('</select>');
+                    },
+                    error: function(error) {
+                        console.log('Error:', error);
+                    }
+                });
+            });
+        });
     </script>
 @endsection

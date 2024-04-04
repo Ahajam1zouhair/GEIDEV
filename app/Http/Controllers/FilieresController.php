@@ -69,4 +69,20 @@ class FilieresController extends Controller
         $groupes = groupes::where('filiere_id', $filiereId)->get();
         return response()->json($groupes);
     }
+
+//     public function fetchGroupes($filiereName)
+// {
+//     // Find the filiere by name
+//     $filiere = Filiere::where('name_filiere', urldecode($filiereName))->first();
+
+//     if (!$filiere) {
+//         return response()->json(['error' => 'Filiere not found'], 404);
+//     }
+
+//     // Get the groupes associated with the found filiere
+//     $groupes = Groupe::where('filiere_id', $filiere->id)->get();
+
+//     return response()->json($groupes);
+// }
+
 }
