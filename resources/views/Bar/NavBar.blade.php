@@ -1,4 +1,3 @@
-
 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
     id="layout-navbar">
     <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none">
@@ -9,13 +8,13 @@
 
     <div class="navbar-nav-right d-flex align-items-center" id="navbar-collapse">
         <!-- Search -->
-        {{-- <div class="navbar-nav align-items-center">
+        <div class="navbar-nav align-items-center">
             <div class="nav-item d-flex align-items-center">
                 <i class="bx bx-search fs-4 lh-0"></i>
                 <input type="text" class="form-control border-0 shadow-none" placeholder="Search..."
                     aria-label="Search..." />
             </div>
-        </div> --}}
+        </div>
         <!-- /Search -->
 
         <ul class="navbar-nav flex-row align-items-center ms-auto">
@@ -26,8 +25,7 @@
                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
                         <img src="https://t4.ftcdn.net/jpg/01/18/03/35/360_F_118033506_uMrhnrjBWBxVE9sYGTgBht8S5liVnIeY.jpg"
-                        style="width:100px; height:100px"
-                        alt class="w-px-40 h-auto rounded-circle" />
+                            style="width:100px; height:100px" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                 </a>
                 <ul class="dropdown-menu dropdown-menu-end">
@@ -36,12 +34,13 @@
                             <div class="d-flex">
                                 <div class="flex-shrink-0 me-3">
                                     <div class="avatar avatar-online">
-                                        <img src="https://t4.ftcdn.net/jpg/01/18/03/35/360_F_118033506_uMrhnrjBWBxVE9sYGTgBht8S5liVnIeY.jpg" alt
-                                            class="w-px-40 h-auto rounded-circle" />
+                                        <img src="https://t4.ftcdn.net/jpg/01/18/03/35/360_F_118033506_uMrhnrjBWBxVE9sYGTgBht8S5liVnIeY.jpg"
+                                            alt class="w-px-40 h-auto rounded-circle" />
                                     </div>
                                 </div>
                                 <div class="flex-grow-1">
-                                    <span class="fw-semibold d-block">Admin</span>
+                                    <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                                    <small class="text-muted">Admin</small>
                                 </div>
                             </div>
                         </a>
@@ -50,19 +49,30 @@
                         <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                        <a class="dropdown-item" href="#">
+                        <a class="dropdown-item" href="{{ route('profile.edit') }}">
                             <i class="bx bx-user me-2"></i>
-                            <span class="align-middle">My Profile</span>
+                            <span class="align-middle">Profile</span>
                         </a>
-                        <a class="dropdown-item" href="auth-login-basic.html">
+                        {{-- <a class="dropdown-item" href="{{ route('profile.edit') }}">
                             <i class="bx bx-power-off me-2"></i>
                             <span class="align-middle">Log Out</span>
-                        </a>
+                        </a> --}}
+
+                        <form method="POST" action="{{ route('logout') }}">
+                            @csrf
+                            <button class="dropdown-item" :href="route('logout')"
+                                onclick="event.preventDefault();
+                                                    this.closest('form').submit();">
+                                <i class="bx bx-power-off me-2"></i>
+                                <span class="align-middle">Log Out</span>
+                            </button>
+                        </form>
+
                     </li>
                 </ul>
             </li>
+
             <!--/ User -->
         </ul>
     </div>
 </nav>
-

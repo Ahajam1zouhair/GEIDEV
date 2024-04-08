@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add stagiaire</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span>Edit Bénéficiare</h4>
             <div class="row">
                 <!-- Basic Layout -->
                 <div class="col-xxl">

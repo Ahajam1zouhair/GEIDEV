@@ -4,11 +4,11 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Basic Tables</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Tables /</span> Bénéficiare</h4>
             <div class="row">
                 <div class="col-md-9">
                     <a href="{{ route('stagiaire.create') }}" class="btn btn-primary  mb-4"> <i class='bx bxs-user-plus'></i>
-                        Add Bénéficiare </a>
+                        Ajouter Bénéficiare</a>
                 </div>
             </div>
             <!-- Basic Bootstrap Table -->
@@ -112,7 +112,7 @@
                 <div class="card m-4">
                     <div class="row ">
                         <div class="col-md-8">
-                            <h5 class="card-header">Table les Stagiaire</h5>
+                            <h5 class="card-header">Table les Bénéficiares</h5>
                         </div>
                         <div class="col-md-4">
                             <label class="col-form-label">Items par page</label>

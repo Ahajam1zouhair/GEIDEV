@@ -9,8 +9,9 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="https://cmc.ac.ma/sites/default/files/images/header/cmc-logo.png" />
-
+    <link rel="icon" type="image/x-icon" href="https://cmc.ac.ma/sites/default/files/2022-07/Logo-CMC-Familly_Pluriel_Vect_1.png" />
+    
+    
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />

@@ -4,7 +4,7 @@
     <div class="content-wrapper">
         <!-- Content -->
         <div class="container-xxl flex-grow-1 container-p-y">
-            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Add stagiaire</h4>
+            <h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Forms/</span> Edit Bénéficiare</h4>
             <div class="row">
                 <!-- Basic Layout -->
                 <div class="col-xxl">
@@ -39,7 +39,7 @@
                                     <div class="col-md-4">
                                         <div class="row mb-3">
                                             <label class="col-form-label" for="basic-default-prenom">prenom
-                                                </label>
+                                            </label>
                                             <div class="col-sm-10">
                                                 <input type="text"
                                                     class="form-control @error('prenom') is-invalid @enderror"
@@ -75,7 +75,7 @@
                                         </div>
                                     </div>
                                     <div class="col-md-4">
-                                        <label class="col-form-label" for="basic-default-cin">Cin 
+                                        <label class="col-form-label" for="basic-default-cin">Cin
                                         </label>
                                         <div class="col-sm-10">
                                             <input type="text" class="form-control @error('cin') is-invalid @enderror"
@@ -101,10 +101,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                <div class="col-md-4">
+                                    <div class="col-md-4">
                                         <div class="row mb-3">
                                             <label class=" col-form-label" for="basic-default-tel">tel
-                                                </label>
+                                            </label>
                                             <div class="col-sm-10">
                                                 <input type="text"
                                                     class="form-control @error('tel') is-invalid @enderror"
@@ -130,8 +130,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
-                                
+
+
                                     <div class="row mb-3">
                                         <label class="col-form-label" for="basic-default-statut">statut </label>
                                         <div class="col-sm-10">
